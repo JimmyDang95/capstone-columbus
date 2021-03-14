@@ -1,4 +1,7 @@
 package de.jimmy.columbus.db;
 
-public class UserMongoDb {
+import de.jimmy.columbus.model.User;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface UserMongoDb extends PagingAndSortingRepository<User, String> {
 }
