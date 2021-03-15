@@ -1,6 +1,7 @@
 
 import './App.css';
 import Map from "./components/Map";
+import React from "react";
 
 
 function App() {
@@ -12,3 +13,4 @@ function App() {
 }
 
 export default App;
+
