@@ -7,8 +7,9 @@ import {formatRelative} from 'date-fns';
 const libraries = ["places"];
 const mapContainerStyle = {
     width: "100vw",
-    height: "100vh",
+    height: "50vh",
 };
+//Default Location
 const center = {
     lat: 53.136719,
     lng: 8.216540,

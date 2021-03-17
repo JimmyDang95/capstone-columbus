@@ -1,4 +1,25 @@
 package de.jimmy.columbus.model;
 
-public class RouteList {
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Document(collection = "route")
+public class Route {
+
+    @Id
+    private String routeName;
+    private String locationName;
+    private double lat;
+    private double lng;
 }
