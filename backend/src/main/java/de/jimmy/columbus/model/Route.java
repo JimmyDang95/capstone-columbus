@@ -19,7 +19,8 @@ public class Route {
 
     @Id
     private String routeName;
-    private String locationName;
+    private String routeCountry;
     private double lat;
     private double lng;
+    private List<Location> locations;
 }
