@@ -1,16 +1,16 @@
 package de.jimmy.columbus.service;
 
 import de.jimmy.columbus.db.RoutesMongoDb;
-import de.jimmy.columbus.db.UserMongoDb;
+
 import de.jimmy.columbus.dto.AddRouteDto;
 import de.jimmy.columbus.model.Route;
-import de.jimmy.columbus.utils.ParseUtils;
+
 import de.jimmy.columbus.utils.TimestampUtils;
-import org.springframework.data.mongodb.core.MongoTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
+
 import java.util.List;
 
 @Service
@@ -33,8 +33,8 @@ public class RouteService {
 
     public Route addRoute(AddRouteDto routeToBeAdded){
         Route routeObjectToBeSaved = Route.builder()
-                .routeName(routeToBeAdded.getRouteName())
-                .routeCountry(routeToBeAdded.getRouteCountry())
+                .name(routeToBeAdded.getName())
+                .country(routeToBeAdded.getCountry())
                 .creatorUserName(routeToBeAdded.getCreatorUserName())
                 .timestamp(timestampUtils.generateTimestampInstant())
                 .build();

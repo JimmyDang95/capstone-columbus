@@ -18,8 +18,8 @@ import java.util.List;
 @Builder
 public class AddRouteDto {
 
-    private String routeName;
-    private String routeCountry;
+    private String name;
+    private String country;
     private String creatorUserName;
     private LocalDate localDate;
     private LocalTime creationTime;

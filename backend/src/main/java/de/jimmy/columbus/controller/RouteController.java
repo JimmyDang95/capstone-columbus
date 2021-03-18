@@ -21,7 +21,7 @@ public class RouteController {
     }
 
     @GetMapping
-    public List<Route> listUsers() {
+    public List<Route> listRoutes() {
         return routeService.listRoutes();
     }
 

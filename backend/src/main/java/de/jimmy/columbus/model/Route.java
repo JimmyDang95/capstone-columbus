@@ -9,18 +9,22 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "route")
+@Document(collection = "routes")
 public class Route {
     @Id
-    private String routeName;
-    private String routeCountry;
+    private String name;
+    private String country;
     private String creatorUserName;
     private Instant creationDate;
     private Instant timestamp;
+
+    private List<Location> locations;
 }

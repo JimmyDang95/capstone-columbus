@@ -26,7 +26,7 @@ export default function Map() {
         libraries,
     });
     const [markers, setMarkers] = useState([]);
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState([]);
 
     const panTo = useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});

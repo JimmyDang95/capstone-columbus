@@ -8,6 +8,7 @@ import de.jimmy.columbus.utils.TimestampUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -28,46 +29,57 @@ class RouteServiceTest {
     private final RouteService routeService = new RouteService(routeDb, timestampUtils);
 
 
-/*    @Test
+ @Test
     @DisplayName("List routes should return list of routes from db")
     public void listRoutes() {
         //GIVEN
         when(routeDb.findAll()).thenReturn(List.of(
-                new AddRouteDto("TestRoute", "Germany", "TestCreator",
-                        LocalDate.of(2020, 11, 25),
-                        LocalTime.of(11, 00)),
-                new AddRouteDto("TestRoute2", "England", "TestCreator2",
-                        LocalDate.of(2020, 12, 26),
-                        LocalTime.of(12, 00))))
-                ;
+                Route.builder()
+                        .name("TestRoute")
+                        .country("Germany")
+                        .creatorUserName("Hans")
+                        .build()
+                ));
+
+
         //WHEN
         List<Route> routes = routeService.listRoutes();
 
         //THEN
         assertThat(routes, containsInAnyOrder(
-                new AddRouteDto("TestRoute", "Germany", "TestCreator", LocalDate.of(2020, 11, 25),
-                        LocalTime.of(11, 00))));
+                Route.builder()
+                        .name("TestRoute")
+                        .country("Germany")
+                        .creatorUserName("Hans")
+                        .build()
+        ));
 
-    }*/
-/*
+    }
+
     @Test
     @DisplayName("Add method should a add a route object to route List and return the added route")
     void addRouteTest() {
         //GIVEN
-        AddRouteDto addRouteDto = new AddRouteDto(
-                new Route("testRoute", "Germany", "testcreator",
-                        LocalDate.of(2021, 11, 25),
-                        "hamburg", 53.136719,8.216540),
+        AddRouteDto addRouteDto = AddRouteDto.builder()
+                .name("TestRoute")
+                .country("Germany")
+                .creatorUserName("Hans")
+                .build();
+
 
         //WHEN
         Route addedRoute = routeService.addRoute(addRouteDto);
-        new Route("testRoute", "Germany", "testcreator",
-                LocalDate.of(2021, 11, 25),
-                "hamburg", 53.136719,8.216540),
+
 
         //THEN
+        Route expectedRoute = Route.builder()
+                .name("TestRoute")
+                .country("Germany")
+                .creatorUserName("Hans")
+                .build();
+
         assertThat(addedRoute, is(expectedRoute));
         verify(routeDb).save(expectedRoute);
 
-    }*/
+    }
 }
