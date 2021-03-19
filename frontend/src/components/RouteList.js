@@ -3,15 +3,18 @@ import styled from 'styled-components/macro'
 
 export default function RouteList({routes}){
     return(
+        <section>
         <StyledList>
             {routes.map((route) => (
                 <li key={route.name}>
-                    {"Name der Route: " + route.name}
+                    Routename: {route.name}
                 </li>
                 ))}
         </StyledList>
+        </section>
     )
 }
+
 
 
 const StyledList = styled.ul`

@@ -5,19 +5,22 @@ import AddNewRoute from "./AddNewRoute";
 
 export default function RoutesOverview(){
     const [routes, setRoutes] = useState([])
+
     useEffect(() => {
         getRoutes()
             .then(setRoutes)
             .catch((error) => console.error(error))
     }, [])
 
-    const addNewRoute = (route) =>
-        postRoute(route)
+    const addNewRoute = (routeName) => {
+        const newRouteDto = {"name": routeName, }
+        postRoute(newRouteDto)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
                 setRoutes(updatedRoutes)
             })
             .catch((error) => console.error(error))
+    }
 
     return(
         <div>

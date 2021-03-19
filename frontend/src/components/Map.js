@@ -79,7 +79,7 @@ export default function Map() {
                 ))}
             }}
 
-                {selected ? (
+                {selected && (
                     <InfoWindow
                         position={{lat: selected.lat, lng: selected.lng}}
                         onCloseClick={() => {
@@ -88,7 +88,7 @@ export default function Map() {
                         <div>
                             <p>Standort gespeichert am: {formatRelative(selected.time, new Date())}</p>
                         </div>
-                    </InfoWindow>) : null}
+                    </InfoWindow>)}
                 <LocateCurrentLocation className="locate" panTo={panTo}/>
 
             </GoogleMap>

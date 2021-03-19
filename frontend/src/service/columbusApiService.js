@@ -8,7 +8,7 @@ export const getRoutes = () =>
         .then((response) => response.data);
 
 
-export const postRoute = (route) =>
+export const postRoute = (newRouteDto) =>
     axios
-        .post(routeUrl, {route})
+        .post(routeUrl, newRouteDto)
         .then((response) => response.data)

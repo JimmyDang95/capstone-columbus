@@ -15,8 +15,7 @@ export default function LocateCurrentLocation ({panTo}) {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     })
-                },
-                () => null);
+                });
         }}>
             Zeige Standort
         </Button>

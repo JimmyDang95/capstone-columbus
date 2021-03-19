@@ -1,16 +1,16 @@
-import {useState} from "react";
+import {useState} from 'react';
 import styled from 'styled-components/macro'
 
-export default function AddNewRoute({onAdd}) {
-    const [route, setRoute] = useState('')
+export default function AddNewRoute({ onAdd }) {
+    const [routeName, setRouteName] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (!route) {
+        if (!routeName) {
             return
         }
-        onAdd(route)
-        setRoute('')
+        onAdd(routeName)
+        setRouteName('')
     }
 
 
@@ -18,10 +18,10 @@ export default function AddNewRoute({onAdd}) {
         <Form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={route}
-                onChange={({target}) => setRoute(target.value)}
+                value={routeName}
+                onChange={(event) => setRouteName(event.target.value)}
             />
-            <button disabled={!route} type="submit">
+            <button disabled={!routeName} type="submit">
                 Add new Route
             </button>
         </Form>
