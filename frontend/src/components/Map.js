@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import {useState, useCallback} from 'react'
 import LocateCurrentLocation from "../googleMaps/LocateCurrentLocation";
-import {formatRelative} from 'date-fns';
+import { formatRelative } from 'date-fns';
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -26,7 +26,7 @@ export default function Map() {
         libraries,
     });
     const [markers, setMarkers] = useState([]);
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState(undefined);
 
     const panTo = useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
