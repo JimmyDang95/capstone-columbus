@@ -1,55 +1,67 @@
 import {useState} from 'react';
-import styled from 'styled-components/macro'
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import {Button, Dialog, DialogActions, DialogTitle} from "@material-ui/core";
 
-export default function AddNewRoute({ onAdd }) {
+
+export default function AddNewRoute({onAdd}) {
+    const [open, setOpen] = useState(false);
     const [routeName, setRouteName] = useState('')
+    const [country, setCountry] = useState('')
+    const [creator, setCreator] = useState('')
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault()
         if (!routeName) {
             return
         }
-        onAdd(routeName)
+        onAdd(routeName, country, creator)
         setRouteName('')
+        setCountry('')
+        setCreator('')
     }
 
-
     return (
-        <Form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={routeName}
-                onChange={(event) => setRouteName(event.target.value)}
-            />
-            <button disabled={!routeName} type="submit">
+        <div>
+            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 Add new Route
-            </button>
-        </Form>
+            </Button>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Add new Route</DialogTitle>
+                <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                    <TextField type="text" placeholder="Routename" autoFocus
+                               margin="dense" fullWidth
+                               value={routeName}
+                               onChange={(event) => setRouteName(event.target.value)}/>
+                    <TextField type="text" placeholder="Country"
+                               value={country}
+                               autoFocus
+                               margin="dense"
+                               fullWidt
+                               onChange={(event) => setCountry(event.target.value)}/>
+                    <TextField type="text" placeholder="Creator"
+                               value={creator}
+                               autoFocus
+                               margin="dense" fullWidt
+                               onChange={(event) => setCreator(event.target.value)}/>
+                    <DialogActions>
+                        <Button disabled={!routeName} type="submit" onClick={handleClose} color="primary">
+                            Add new Route
+                        </Button>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                    </DialogActions>
+                </form>
+            </Dialog>
+        </div>
     )
 }
-
-const Form = styled.form`
-    display: flex;
-    
-    input {
-    flex-grow: 1;
-    border-color: blue;
-    border-width: 2px;
-    border-radius: 10px;
-    padding: 8px;
-    margin: 8px;
- }
- 
-    button {
-    font-size: 1em;
-    font-color: red;
-    flex-grow: 
-    background-color: yellow;
-    border-color: orange;
-    border-width: 2px;
-    border-radius: 10px;
-    padding: 8px;
-    margin: 8px;
-    
-   }
-`

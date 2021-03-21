@@ -1,17 +1,16 @@
 import styled from 'styled-components/macro'
+import Route from "./Route";
 
 
 export default function RouteList({routes}){
     return(
-        <section>
         <StyledList>
-            {routes.map((route) => (
+            {routes?.map((route) => (
                 <li key={route.name}>
-                    Routename: {route.name}
+                    <Route route={route}/>
                 </li>
                 ))}
         </StyledList>
-        </section>
     )
 }
 

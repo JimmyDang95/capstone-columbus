@@ -3,6 +3,7 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/a
 import {useState, useCallback} from 'react'
 import LocateCurrentLocation from "../googleMaps/LocateCurrentLocation";
 import { formatRelative } from 'date-fns';
+import {Button} from "@material-ui/core";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -86,7 +87,7 @@ export default function Map() {
                             setSelected(null);
                         }}>
                         <div>
-                            <p>Standort gespeichert am: {formatRelative(selected.time, new Date())}</p>
+                            <p>Locationinfo: {formatRelative(selected.time, new Date())}</p>
                         </div>
                     </InfoWindow>)}
                 <LocateCurrentLocation className="locate" panTo={panTo}/>

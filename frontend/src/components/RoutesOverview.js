@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import RouteList from "./RouteList";
 import {getRoutes, postRoute} from "../service/columbusApiService";
 import AddNewRoute from "./AddNewRoute";
+import {Button} from "@material-ui/core";
 
 export default function RoutesOverview(){
     const [routes, setRoutes] = useState([])
@@ -12,8 +13,8 @@ export default function RoutesOverview(){
             .catch((error) => console.error(error))
     }, [])
 
-    const addNewRoute = (routeName) => {
-        const newRouteDto = {"name": routeName, }
+    const addNewRoute = (routeName, country, creator) => {
+        const newRouteDto = {"name": routeName, "country": country, "creator": creator}
         postRoute(newRouteDto)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
@@ -23,9 +24,12 @@ export default function RoutesOverview(){
     }
 
     return(
-        <div>
+        <>
             <RouteList routes={routes}/>
             <AddNewRoute onAdd={addNewRoute}/>
-        </div>
+            <Button variant="outlined" color="primary">
+                Add current location
+            </Button>
+        </>
     )
 }

@@ -1,11 +1,12 @@
-
-import {Button} from "@material-ui/core";
-
+import GpsFixedTwoToneIcon from '@material-ui/icons/GpsFixedTwoTone';
+import IconButton from '@material-ui/core/IconButton';
+import styled from "styled-components/macro";
 
 export default function LocateCurrentLocation ({panTo}) {
 
     return (
-        <Button
+        <PantoIcon>
+        <IconButton
             variant="contained"
             color="primary"
                 onClick={() => {
@@ -17,11 +18,17 @@ export default function LocateCurrentLocation ({panTo}) {
                     })
                 });
         }}>
-            Zeige Standort
-        </Button>
+            <GpsFixedTwoToneIcon size="large"/>
+        </IconButton>
+        </PantoIcon>
     )
 }
 
+
+const PantoIcon = styled.div`
+    display: grid;
+    justify-content: flex-end;
+ `;
 
 
 
