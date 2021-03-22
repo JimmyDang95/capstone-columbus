@@ -6,7 +6,7 @@ import Overview from "./components/Overview";
 
 function App() {
   return (
-    <div>
+    <div >
       <Map/>
       <Overview/>
     </div>

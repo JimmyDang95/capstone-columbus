@@ -5,9 +5,10 @@ import Route from "./Route";
 export default function RouteList({routes}){
     return(
         <StyledList>
-            {routes?.map((route) => (
+            {routes.map((route, locations, locationName) => (
                 <li key={route.name}>
                     <Route route={route}/>
+                    Locations: {locationName + []}
                 </li>
                 ))}
         </StyledList>

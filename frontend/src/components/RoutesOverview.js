@@ -13,9 +13,9 @@ export default function RoutesOverview(){
             .catch((error) => console.error(error))
     }, [])
 
-    const addNewRoute = (routeName, country, creatorUserName) => {
-        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName,}
-        postRoute(newRouteDto)
+    const addNewRoute = (routeName, country, creatorUserName, locations) => {
+/*        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName, "locations": [locations]}*/
+        postRoute(routeName, country, creatorUserName, locations)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
                 setRoutes(updatedRoutes)

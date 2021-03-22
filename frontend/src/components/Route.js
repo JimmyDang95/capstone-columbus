@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Route({route}) {
+export default function Route({route, locations, locationName}) {
     const classes = useStyles();
 
     return (
@@ -29,6 +29,7 @@ export default function Route({route}) {
                     </Typography>
                     <Typography variant="h5" component="h2">Routename: {route.name}</Typography>
                     <Typography className={classes.pos} color="textSecondary"> Country: {route.country} </Typography>
+                    <Typography variant="body2" component="p">Visited Locations: {locations}</Typography>
                 </CardContent>
             </Card>
     )
