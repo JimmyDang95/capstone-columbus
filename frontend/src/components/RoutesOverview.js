@@ -13,8 +13,8 @@ export default function RoutesOverview(){
             .catch((error) => console.error(error))
     }, [])
 
-    const addNewRoute = (routeName, country, creator) => {
-        const newRouteDto = {"name": routeName, "country": country, "creator": creator}
+    const addNewRoute = (routeName, country, creatorUserName) => {
+        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName,}
         postRoute(newRouteDto)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
@@ -27,7 +27,7 @@ export default function RoutesOverview(){
         <>
             <RouteList routes={routes}/>
             <AddNewRoute onAdd={addNewRoute}/>
-            <Button variant="outlined" color="primary">
+            <Button variant="outlined" color="primary" position="fixed">
                 Add current location
             </Button>
         </>

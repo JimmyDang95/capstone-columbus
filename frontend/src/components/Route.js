@@ -24,11 +24,11 @@ export default function Route({route}) {
     return (
             <Card className={classes.root} variant="outlined">
                 <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>Creator: {route.creator}</Typography>
-                    <Typography variant="h5" component="h2">Routename: {route.name}</Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        Country: {route.country}
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        Creator: {route.creatorUserName}
                     </Typography>
+                    <Typography variant="h5" component="h2">Routename: {route.name}</Typography>
+                    <Typography className={classes.pos} color="textSecondary"> Country: {route.country} </Typography>
                 </CardContent>
             </Card>
     )

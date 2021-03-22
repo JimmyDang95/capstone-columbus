@@ -8,7 +8,7 @@ export default function AddNewRoute({onAdd}) {
     const [open, setOpen] = useState(false);
     const [routeName, setRouteName] = useState('')
     const [country, setCountry] = useState('')
-    const [creator, setCreator] = useState('')
+    const [creatorUserName, setCreatorUserName] = useState('')
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -23,35 +23,41 @@ export default function AddNewRoute({onAdd}) {
         if (!routeName) {
             return
         }
-        onAdd(routeName, country, creator)
+        onAdd(routeName, country, creatorUserName)
         setRouteName('')
         setCountry('')
-        setCreator('')
+        setCreatorUserName('')
     }
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="primary" onClick={handleClickOpen} position="fixed">
                 Add new Route
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add new Route</DialogTitle>
                 <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                    <TextField type="text" placeholder="Routename" autoFocus
-                               margin="dense" fullWidth
+                    <TextField type="text"
+                               placeholder="Routename"
                                value={routeName}
+                               autoFocus
+                               margin="dense"
+                               fullWidth
                                onChange={(event) => setRouteName(event.target.value)}/>
-                    <TextField type="text" placeholder="Country"
+                    <TextField type="text"
+                               placeholder="Country"
                                value={country}
                                autoFocus
                                margin="dense"
                                fullWidt
                                onChange={(event) => setCountry(event.target.value)}/>
-                    <TextField type="text" placeholder="Creator"
-                               value={creator}
+                    <TextField type="text"
+                               placeholder="Creator"
+                               value={creatorUserName}
                                autoFocus
-                               margin="dense" fullWidt
-                               onChange={(event) => setCreator(event.target.value)}/>
+                               margin="dense"
+                               fullWidt
+                               onChange={(event) => setCreatorUserName(event.target.value)}/>
                     <DialogActions>
                         <Button disabled={!routeName} type="submit" onClick={handleClose} color="primary">
                             Add new Route

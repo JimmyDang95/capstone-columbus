@@ -4,6 +4,7 @@ import {useState, useCallback} from 'react'
 import LocateCurrentLocation from "../googleMaps/LocateCurrentLocation";
 import { formatRelative } from 'date-fns';
 import {Button} from "@material-ui/core";
+import styled from 'styled-components/macro'
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -61,7 +62,8 @@ export default function Map() {
             10: City
             15: Streets
             20: Buildings*/}
-            <GoogleMap mapContainerStyle={mapContainerStyle}
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
                        zoom={15}
                        center={center}
                        options={options}
@@ -91,10 +93,18 @@ export default function Map() {
                         </div>
                     </InfoWindow>)}
                 <LocateCurrentLocation className="locate" panTo={panTo}/>
-
             </GoogleMap>
         </>
 
     );
 }
 
+/*
+const MapContainer = styled.div`
+    position: relative;
+    padding-bottom: 26.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+`*/
