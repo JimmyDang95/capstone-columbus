@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Button, Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Route({route, locations, locationName}) {
+export default function Route({route, onDeleteRouteItem}) {
     const classes = useStyles();
 
     return (
@@ -27,11 +27,20 @@ export default function Route({route, locations, locationName}) {
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         Creator: {route.creatorUserName}
                     </Typography>
-                    <Typography variant="h5" component="h2">Routename: {route.name}</Typography>
+                    <Typography variant="h5" component="h2"> Routename: {route.name}</Typography>
                     <Typography className={classes.pos} color="textSecondary"> Country: {route.country} </Typography>
-                    <Typography variant="body2" component="p">Visited Locations: {locations}</Typography>
+                    <Typography variant="body2" component="p">Visited Locations: {route?.locations?.map(location => <p>{location.locationName}</p>)}</Typography>
                 </CardContent>
+                <CardActions>
+                    <button
+                        onClick={() => onDeleteRouteItem(route.id)}
+                        type="button"
+                    >
+                        Delete
+                    </button>
+                </CardActions>
             </Card>
     )
+
 }
 

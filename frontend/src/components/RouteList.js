@@ -2,13 +2,12 @@ import styled from 'styled-components/macro'
 import Route from "./Route";
 
 
-export default function RouteList({routes}){
+export default function RouteList({routes, onDeleteRouteItem}){
     return(
         <StyledList>
-            {routes.map((route, locations, locationName) => (
-                <li key={route.name}>
-                    <Route route={route}/>
-                    Locations: {locationName + []}
+            {routes.map((route) => (
+                <li key={route.id}>
+                    <Route route={route} onDeleteRouteItem={onDeleteRouteItem}/>
                 </li>
                 ))}
         </StyledList>

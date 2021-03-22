@@ -12,3 +12,8 @@ export const postRoute = (newRouteDto) =>
     axios
         .post(routeUrl, newRouteDto)
         .then((response) => response.data)
+
+
+export const deleteRouteFromList = (route) =>
+    axios
+        .delete(routeUrl + "/" + route.id)

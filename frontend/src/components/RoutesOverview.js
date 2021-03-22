@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import RouteList from "./RouteList";
-import {getRoutes, postRoute} from "../service/columbusApiService";
+import {deleteRouteFromList, getRoutes, postRoute} from "../service/columbusApiService";
 import AddNewRoute from "./AddNewRoute";
 import {Button} from "@material-ui/core";
 
-export default function RoutesOverview(){
+export default function RoutesOverview() {
     const [routes, setRoutes] = useState([])
 
     useEffect(() => {
@@ -13,9 +13,9 @@ export default function RoutesOverview(){
             .catch((error) => console.error(error))
     }, [])
 
-    const addNewRoute = (routeName, country, creatorUserName, locations) => {
-/*        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName, "locations": [locations]}*/
-        postRoute(routeName, country, creatorUserName, locations)
+    const addNewRoute = (routeName, country, creatorUserName) => {
+        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName}
+        postRoute(newRouteDto)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
                 setRoutes(updatedRoutes)
@@ -23,9 +23,17 @@ export default function RoutesOverview(){
             .catch((error) => console.error(error))
     }
 
-    return(
+    const deleteRoute = (routeId) => {
+        deleteRouteFromList(routeId).then(() => {
+            setRoutes([
+                ...routes.filter((route) => route.id !== routeId),
+            ])
+        })
+    }
+
+    return (
         <>
-            <RouteList routes={routes}/>
+            <RouteList routes={routes} onDeleteRouteItem={deleteRoute}/>
             <AddNewRoute onAdd={addNewRoute}/>
             <Button variant="outlined" color="primary" position="fixed">
                 Add current location
