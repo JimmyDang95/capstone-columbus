@@ -72,10 +72,10 @@ public class RouteControllerTest {
                 .country("Sweden")
                 .creatorUserName("Franz")
                 .build());
-        //When
+        //WHEN
         ResponseEntity<Route[]> response = testRestTemplate.getForEntity(getUrl(), Route[].class);
 
-        //Then
+        //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), arrayContainingInAnyOrder(
                 Route.builder()
@@ -91,8 +91,23 @@ public class RouteControllerTest {
                         .creatorUserName("Franz")
                         .build()
                 ));
+    }
 
+    @Test
+    @DisplayName("Delete route from list")
+    public void deleteRouteFromList() {
+        //GIVEN
+        routeDb.save(Route.builder()
+                        .id("1")
+                        .name("TestRoute")
+                        .country("Germany")
+                        .creatorUserName("Hans")
+                        .build());
 
+        //WHEN
+       testRestTemplate.delete(getUrl() + "/1");
+       //THEN
+        assertThat(routeDb.existsById("1"), is(false));
     }
 
 }
