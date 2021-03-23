@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/routes")
+@RequestMapping("api/routes")
 public class RouteController {
 
     private final RouteService routeService;
@@ -29,5 +29,11 @@ public class RouteController {
     public Route addRoute(@RequestBody AddRouteDto dto){
         return routeService.addRoute(dto);
     }
+
+    @DeleteMapping("{name}")
+    public void deleteRoute(@PathVariable String name) {
+        routeService.deleteRouteFromList(name);
+    }
+
 
 }

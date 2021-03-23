@@ -3,9 +3,6 @@ package de.jimmy.columbus.utils;
 import de.jimmy.columbus.dto.AddRouteDto;
 import de.jimmy.columbus.model.Route;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,11 +18,11 @@ public class ParseUtils {
 
     public static AddRouteDto parseToRouteDto(Route route) {
         return new AddRouteDto(
+                route.getId(),
                 route.getName(),
                 route.getCountry(),
                 route.getCreatorUserName(),
-                LocalDate.ofInstant(route.getCreationDate(), ZoneId.of("Europe/Berlin")),
-                LocalTime.ofInstant(route.getCreationDate(), ZoneId.of("Europe/Berlin")));
+                route.getLocations());
     }
 
 }

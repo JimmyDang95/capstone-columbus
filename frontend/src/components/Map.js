@@ -3,8 +3,6 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/a
 import {useState, useCallback} from 'react'
 import LocateCurrentLocation from "../googleMaps/LocateCurrentLocation";
 import { formatRelative } from 'date-fns';
-import {Button} from "@material-ui/core";
-import styled from 'styled-components/macro'
 
 const libraries = ["places"];
 const mapContainerStyle = {

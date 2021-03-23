@@ -1,4 +1,4 @@
-package de.jimmy.columbus.model;
+package de.jimmy.columbus.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Location {
+public class LocationDto {
 
     private String locationName;
     private double lat;

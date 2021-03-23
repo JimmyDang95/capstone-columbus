@@ -23,10 +23,8 @@ import static org.hamcrest.Matchers.*;
 class RouteServiceTest {
 
     private final RoutesMongoDb routeDb = mock(RoutesMongoDb.class);
-    private final TimestampUtils timestampUtils = mock(TimestampUtils.class);
 
-
-    private final RouteService routeService = new RouteService(routeDb, timestampUtils);
+    private final RouteService routeService = new RouteService(routeDb);
 
 
  @Test
@@ -80,6 +78,22 @@ class RouteServiceTest {
 
         assertThat(addedRoute, is(expectedRoute));
         verify(routeDb).save(expectedRoute);
+
+    }
+
+    @Test
+    @DisplayName("Delete Route from list and db")
+    void deleteRouteTest() {
+
+     //GIVEN
+
+
+     //WHEN
+     routeService.deleteRouteFromList("testroute");
+
+     //THEN
+     verify(routeDb).deleteById("testroute");
+
 
     }
 }

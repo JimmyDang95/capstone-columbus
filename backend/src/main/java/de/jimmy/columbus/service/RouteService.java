@@ -17,12 +17,10 @@ import java.util.List;
 public class RouteService {
 
     private final RoutesMongoDb routeDb;
-    private final TimestampUtils timestampUtils;
 
     @Autowired
-    public RouteService(RoutesMongoDb routeDb, TimestampUtils timestampUtils){
+    public RouteService(RoutesMongoDb routeDb){
         this.routeDb = routeDb;
-        this.timestampUtils = timestampUtils;
     }
 
     public List<Route> listRoutes() {
@@ -33,15 +31,21 @@ public class RouteService {
 
     public Route addRoute(AddRouteDto routeToBeAdded){
         Route routeObjectToBeSaved = Route.builder()
+                .id(routeToBeAdded.getId())
                 .name(routeToBeAdded.getName())
                 .country(routeToBeAdded.getCountry())
                 .creatorUserName(routeToBeAdded.getCreatorUserName())
-                .timestamp(timestampUtils.generateTimestampInstant())
+                .locations(routeToBeAdded.getLocations())
                 .build();
 
 
         routeDb.save(routeObjectToBeSaved);
-        return (routeObjectToBeSaved);
+        return routeObjectToBeSaved;
 
     }
+
+    public void deleteRouteFromList (String name) {
+        routeDb.deleteById(name);
+    }
+
 }
