@@ -1,11 +1,10 @@
 import React, {useRef} from 'react';
-import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript, InfoWindow} from '@react-google-maps/api';
 import {useState, useCallback} from 'react'
 import PanToCurrentLocation from "./Map/PanToCurrentLocation";
 import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
-import SetInfoWindowOfMarker from "./Map/SetInfoWindowOfMarker";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -24,6 +23,7 @@ const options = {
 
 
 export default function Map() {
+
     // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -101,9 +101,11 @@ export default function Map() {
                             <button>
                                 Add this location
                             </button>
-                            <button onClick={() => {
+                            <button
+                                onClick={() => {
                                 setMarkers(null)
-                                setMarkers(markers.filter(marker => marker !== selected))}}>
+                                setMarkers(markers.filter(marker => marker !== selected))
+                                setSelected(null)}}>
                                 Delete this location
                             </button>
                         </div>

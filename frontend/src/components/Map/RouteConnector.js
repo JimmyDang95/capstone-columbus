@@ -1,4 +1,4 @@
-import {GoogleMap, Marker, Polyline} from "@react-google-maps/api";
+import { Marker, Polyline} from "@react-google-maps/api";
 import React from "react";
 
 export default function RouteConnector ({markers, setSelected}) {
