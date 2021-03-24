@@ -16,13 +16,14 @@ export default function PanToCurrentLocation({panTo}) {
                             panTo({
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
-                            })
-                        }, () => null)
+                            });
+                        },
+                        () => null);
                 }}>
                 <GpsFixedTwoToneIcon size="large"/>
             </IconButton>
         </PantoIcon>
-    )
+    );
 }
 
 

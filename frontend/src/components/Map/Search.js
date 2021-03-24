@@ -1,5 +1,6 @@
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 import {Combobox, ComboboxInput, ComboboxList, ComboboxOption, ComboboxPopover} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 import React from "react";
 
 
@@ -13,13 +14,14 @@ export default function Search({panTo}) {
             },
             // 300km radius search expansion range
             radius: 300 * 1000,
-        }
+        },
     });
 
     return (
-        <div>
-            <Combobox onselect={async (address) => {
-                // get selected address without fetching new data from google Api
+        <div className="search">
+            <Combobox
+                onselect={async (address) => {
+                 // get selected address without fetching new data from google Api
                 setValue(address, false);
 
                 // close results-list
@@ -39,7 +41,7 @@ export default function Search({panTo}) {
                                    setValue(event.target.value);
                                }}
                                disabled={!ready}
-                               placeholder={" search"}
+                               placeholder={"Search for location"}
                 />
                 <ComboboxPopover>
                     <ComboboxList>

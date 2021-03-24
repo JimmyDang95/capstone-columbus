@@ -34,23 +34,18 @@ export default function Map() {
     const [markers, setMarkers] = useState([]);
 
     // infoWindow for selected marker
-    const [selected, setSelected] = useState(undefined);
-
-    const panTo = useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
-    }, []);
+    const [selected, setSelected] = useState(null);
 
     const onMapClick = useCallback((event) => {
-            setMarkers(current => [...current,
+            setMarkers(current => [
+                ...current,
                 {
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng(),
                     time: new Date(),
                 },
             ]);
-        },
-        []);
+        }, []);
 
 
     // makes map re-center to new position and prevents re-render
@@ -60,17 +55,16 @@ export default function Map() {
         mapRef.current = map;
     }, []);
 
-    // re-center map to new search location
-    const reCenter = useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(15)
-    })
+    const reCenter = useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(14);
+    }, []);
 
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps";
 
     return (
-        <>
+        <div>
             {/*Zoomlevels:
             1: World
             5: Landmass/continent
@@ -79,6 +73,9 @@ export default function Map() {
             20: Buildings*/}
 
             <Search panTo={reCenter}/>
+            <PanToCurrentLocation className="locate" panTo={reCenter}/>
+
+
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={15}
@@ -111,8 +108,7 @@ export default function Map() {
                         </div>
                     </InfoWindow>
                 )}
-                <PanToCurrentLocation className="locate" panTo={panTo}/>
             </GoogleMap>
-        </>
+        </div>
     );
 }

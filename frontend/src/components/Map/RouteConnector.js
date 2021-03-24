@@ -15,7 +15,7 @@ export default function RouteConnector ({markers, setSelected}) {
     }
 
     return (
-        <>
+        <div>
             {markers.map((marker) => (
                 <Marker
                     key={marker.time.toISOString()}
@@ -32,9 +32,7 @@ export default function RouteConnector ({markers, setSelected}) {
                 path={polyLineCoords}
                 options={polylineOptions}
             />
-
-
-        </>
+        </div>
     )
 
 }
