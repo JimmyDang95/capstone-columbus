@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
+import { Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Route({route, onDeleteRouteItem}) {
+export default function RouteListItem({route, onDeleteRouteItem}) {
     const classes = useStyles();
 
     return (

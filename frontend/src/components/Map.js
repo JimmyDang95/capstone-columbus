@@ -1,8 +1,11 @@
 import React, {useRef} from 'react';
-import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
 import {useState, useCallback} from 'react'
-import LocateCurrentLocation from "../googleMaps/LocateCurrentLocation";
-import { formatRelative } from 'date-fns';
+import PanToCurrentLocation from "./Map/PanToCurrentLocation";
+import {formatRelative} from 'date-fns';
+import RouteConnector from "./Map/RouteConnector";
+import Search from "./Map/Search";
+import SetInfoWindowOfMarker from "./Map/SetInfoWindowOfMarker";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -21,11 +24,16 @@ const options = {
 
 
 export default function Map() {
+    // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
+
+    // set markers onClick on the map
     const [markers, setMarkers] = useState([]);
+
+    // infoWindow for selected marker
     const [selected, setSelected] = useState(undefined);
 
     const panTo = useCallback(({lat, lng}) => {
@@ -44,10 +52,19 @@ export default function Map() {
         },
         []);
 
+
+    // makes map re-center to new position and prevents re-render
+    // useRef keeps a state without re-rendering => (opposite of useState)
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, []);
+
+    // re-center map to new search location
+    const reCenter = useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(15)
+    })
 
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps";
@@ -60,26 +77,18 @@ export default function Map() {
             10: City
             15: Streets
             20: Buildings*/}
+
+            <Search panTo={reCenter}/>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
-                       zoom={15}
-                       center={center}
-                       options={options}
-                       onClick={onMapClick}
-                       onLoad={onMapLoad}
+                zoom={15}
+                center={center}
+                options={options}
+                onClick={onMapClick}
+                onLoad={onMapLoad}
             >
-                {markers.map((marker) => (
-                        <Marker
-                            key={marker.time.toISOString()}
-                            position={{lat: marker.lat, lng: marker.lng
-                            }}
-                            onClick={() => {
-                                setSelected(marker);
-                            }}
-                        />
-                ))}
-            }}
 
+                <RouteConnector markers={markers} setSelected={setSelected}/>
                 {selected && (
                     <InfoWindow
                         position={{lat: selected.lat, lng: selected.lng}}
@@ -87,22 +96,21 @@ export default function Map() {
                             setSelected(null);
                         }}>
                         <div>
-                            <p>Locationinfo: {formatRelative(selected.time, new Date())}</p>
+                            <p>Locationinfo: {formatRelative(selected.time, new Date())}
+                            </p>
+                            <button>
+                                Add this location
+                            </button>
+                            <button onClick={() => {
+                                setMarkers(null)
+                                setMarkers(markers.filter(marker => marker !== selected))}}>
+                                Delete this location
+                            </button>
                         </div>
-                    </InfoWindow>)}
-                <LocateCurrentLocation className="locate" panTo={panTo}/>
+                    </InfoWindow>
+                )}
+                <PanToCurrentLocation className="locate" panTo={panTo}/>
             </GoogleMap>
         </>
-
     );
 }
-
-/*
-const MapContainer = styled.div`
-    position: relative;
-    padding-bottom: 26.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-}
-`*/

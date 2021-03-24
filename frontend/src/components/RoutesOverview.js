@@ -25,9 +25,8 @@ export default function RoutesOverview() {
 
     const deleteRoute = (routeId) => {
         deleteRouteFromList(routeId).then(() => {
-            setRoutes([
-                ...routes.filter((route) => route.id !== routeId),
-            ])
+            setRoutes(
+                routes.filter((route) => route.id !== routeId))
         })
     }
 

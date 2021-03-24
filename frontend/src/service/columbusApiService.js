@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const userUrl = 'api/user'
 const routeUrl = '/api/routes'
 
 export const getRoutes = () =>
@@ -14,6 +15,6 @@ export const postRoute = (newRouteDto) =>
         .then((response) => response.data)
 
 
-export const deleteRouteFromList = (route) =>
+export const deleteRouteFromList = (routeName) =>
     axios
-        .delete(routeUrl + "/" + route.id)
+        .delete(`${routeUrl}/${routeName}`)
