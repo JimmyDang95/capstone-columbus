@@ -18,7 +18,7 @@ export default function RouteConnector ({markers, setSelected}) {
         <div>
             {markers.map((marker) => (
                 <Marker
-                    key={marker.time.toISOString()}
+                    key={`${marker.lat}-${marker.lng}`}
                     position={{
                         lat: marker.lat, lng: marker.lng
                     }}

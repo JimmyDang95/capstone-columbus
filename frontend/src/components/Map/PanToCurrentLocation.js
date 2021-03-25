@@ -20,7 +20,7 @@ export default function PanToCurrentLocation({panTo}) {
                         },
                         () => null);
                 }}>
-                <GpsFixedTwoToneIcon size="large"/>
+                <GpsFixedTwoToneIcon className="gpsicon" size="large"/>
             </IconButton>
         </PantoIcon>
     );
@@ -28,9 +28,14 @@ export default function PanToCurrentLocation({panTo}) {
 
 
 const PantoIcon = styled.div`
-    display: grid;
+    display: flex;
     justify-content: flex-end;
- `;
+    
+    .gpsicon {
+        margin-right: 15px;
+        margin-top: 15px;
+    }
+ `
 
 
 

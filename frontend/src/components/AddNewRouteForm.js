@@ -1,23 +1,22 @@
 import {useState} from 'react';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import {Button, Dialog, DialogActions, DialogTitle} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 
-
-export default function AddNewRoute({onAdd}) {
-    const [open, setOpen] = useState(false);
+export default function AddNewRouteForm({onAdd}) {
+    //const [open, setOpen] = useState(false);
     const [routeName, setRouteName] = useState('')
     const [country, setCountry] = useState('')
     const [creatorUserName, setCreatorUserName] = useState('')
 
-    const handleClickOpen = () => {
+    /*const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
     };
-
+*/
     const handleSubmit = (event) => {
         event.preventDefault()
         if (!routeName) {
@@ -29,8 +28,19 @@ export default function AddNewRoute({onAdd}) {
         setCreatorUserName('')
     }
 
+
     return (
         <div>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <TextField id="outlined-basic" placeholder="Routename" value={routeName} variant="outlined" type="text" onChange={(event) => setRouteName(event.target.value)}/>
+                <TextField id="outlined-basic" placeholder="Country" value={country} variant="outlined" type="text" onChange={(event) => setCountry(event.target.value)}/>
+                <TextField id="outlined-basic" placeholder="Creator" value={creatorUserName} variant="outlined" type="text" onChange={(event) => setCreatorUserName(event.target.value)}/>
+                <Button variant="contained" color="secondary" type="submit">
+                    Save
+                </Button>
+            </form>
+        </div>
+        /*<div>
             <Button variant="outlined" color="primary" onClick={handleClickOpen} position="fixed">
                 Add new Route
             </Button>
@@ -68,6 +78,6 @@ export default function AddNewRoute({onAdd}) {
                     </DialogActions>
                 </form>
             </Dialog>
-        </div>
+        </div>*/
     )
 }
