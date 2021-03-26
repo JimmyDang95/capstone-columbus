@@ -4,12 +4,23 @@ import {useState} from "react";
 import MapContainer from "../components/MapContainer";
 import styled from 'styled-components/macro'
 
+const initState = {name: "", country: "", creatorUserName: "", locations: [],  }
+
 export default function NewRoutePage() {
     const [routes, setRoutes] = useState([])
+    const [routeToAdd, setRouteToAdd] = useState(initState)
 
-    const addNewRoute = (routeName, country, creatorUserName) => {
-        const newRouteDto = {"name": routeName, "country": country, "creatorUserName": creatorUserName}
-        postRoute(newRouteDto)
+    // set markers onClick on the map
+    const [markers, setMarkers] = useState([]);
+
+    const handleChange = (event) => {
+        setRouteToAdd({...routeToAdd,[event.target.name]:event.target.value})
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setRouteToAdd({...routeToAdd,locations: markers})
+       postRoute(routeToAdd)
             .then((newRoute) => {
                 const updatedRoutes = [...routes, newRoute]
                 setRoutes(updatedRoutes)
@@ -17,10 +28,12 @@ export default function NewRoutePage() {
             .catch((error) => console.error(error))
     }
 
+    console.log(routeToAdd)
     return (
         <>
-            <MapContainer className="mapContainer"/>
-            <AddNewRouteForm onAdd={addNewRoute}/>
+            <MapContainer  markers={markers} setMarkers={setMarkers} className="mapContainer"/>
+            <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
+            {markers.map(marker => <p>{marker.lat}</p>)}
         </>
     )
 }

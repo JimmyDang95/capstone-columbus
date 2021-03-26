@@ -22,7 +22,8 @@ const options = {
 };
 
 
-export default function MapContainer() {
+
+export default function MapContainer({markers, setMarkers}) {
 
     // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
@@ -30,8 +31,6 @@ export default function MapContainer() {
         libraries,
     });
 
-    // set markers onClick on the map
-    const [markers, setMarkers] = useState([]);
 
     // infoWindow for selected marker
     const [selected, setSelected] = useState(null);
@@ -46,6 +45,15 @@ export default function MapContainer() {
             },
         ]);
     }, []);
+
+ /*   const handleNameChange = (event) => {
+        setMarkers((current) => [{
+            ...current,
+
+            locationName: event.target.value
+        }
+        ]);
+    }*/
 
 
     // makes map re-center to new position and prevents re-render
@@ -95,9 +103,6 @@ export default function MapContainer() {
                             <div>
                                 <p>Locationinfo: {formatRelative(selected.time, new Date())}
                                 </p>
-                                <button>
-                                    Add this location
-                                </button>
                                 <button
                                     onClick={() => {
                                         setMarkers(null)
@@ -106,6 +111,7 @@ export default function MapContainer() {
                                     }}>
                                     Delete this location
                                 </button>
+                              {/* <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleNameChange}/>*/}
                             </div>
                         </InfoWindow>
                     )}
