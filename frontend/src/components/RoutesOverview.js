@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import RouteList from "./RouteList";
 import {deleteRouteFromList, getRoutes} from "../service/columbusApiService";
-import styled from 'styled-components/macro'
 
 
 

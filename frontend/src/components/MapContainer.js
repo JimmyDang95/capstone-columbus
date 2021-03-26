@@ -46,14 +46,17 @@ export default function MapContainer({markers, setMarkers}) {
         ]);
     }, []);
 
- /*   const handleNameChange = (event) => {
+
+
+    const handleNameChange = (event) => {
         setMarkers((current) => [{
             ...current,
 
             locationName: event.target.value
         }
         ]);
-    }*/
+    }
+
 
 
     // makes map re-center to new position and prevents re-render
@@ -62,6 +65,7 @@ export default function MapContainer({markers, setMarkers}) {
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, []);
+
 
     const panTo = React.useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
@@ -111,7 +115,7 @@ export default function MapContainer({markers, setMarkers}) {
                                     }}>
                                     Delete this location
                                 </button>
-                              {/* <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleNameChange}/>*/}
+                              <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleNameChange}/>
                             </div>
                         </InfoWindow>
                     )}
