@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RouteService {
@@ -31,7 +32,6 @@ public class RouteService {
 
     public Route addRoute(AddRouteDto routeToBeAdded){
         Route routeObjectToBeSaved = Route.builder()
-                .id(routeToBeAdded.getId())
                 .name(routeToBeAdded.getName())
                 .country(routeToBeAdded.getCountry())
                 .creatorUserName(routeToBeAdded.getCreatorUserName())
@@ -44,8 +44,11 @@ public class RouteService {
 
     }
 
-    public void deleteRouteFromList (String name) {
+    public void deleteRoute(String name) {
         routeDb.deleteById(name);
     }
 
+    public Optional<Route> getRouteByRouteName(String id) {
+        return routeDb.findById(id);
+    }
 }

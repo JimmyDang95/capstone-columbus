@@ -8,6 +8,10 @@ export const getRoutes = () =>
         .get(routeUrl)
         .then((response) => response.data);
 
+export const getRoute = (name) =>
+    axios
+        .get(`${routeUrl}/${name}`)
+        .then((response) => response.data)
 
 export const postRoute = (newRouteDto) =>
     axios

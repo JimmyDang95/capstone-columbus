@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React from "react";
 import NewRoutePage from "./pages/NewRoutePage";
 import RoutesOverview from "./components/RoutesOverview";
+import RouteDetails from "./pages/RouteDetails";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/routesoverview">
                 <RoutesOverview/>
+            </Route>
+            <Route path="/routes/:name">
+                <RouteDetails/>
             </Route>
         </Switch>
     </Router>

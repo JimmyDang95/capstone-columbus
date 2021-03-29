@@ -6,18 +6,26 @@ import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
 
-const libraries = ["places"];
+
+// additional google libraries; "places" for the search function on the map
+const libraries = ['places']
+
+// set size of the rendered map
 const mapContainerStyle = {
     width: "100vw",
     height: "50vh",
 };
-//Default Location
+
+//Default Location of Oldenburg
 const center = {
     lat: 53.136719,
     lng: 8.216540,
 };
+
+
 const options = {
     disableDefaultUI: true,
+    mapTypeControl: true,
     zoomControl: true,
 };
 
@@ -28,6 +36,7 @@ export default function MapContainer({markers, setMarkers}) {
     // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        version: '3.42.9',
         libraries,
     });
 
@@ -35,28 +44,30 @@ export default function MapContainer({markers, setMarkers}) {
     // infoWindow for selected marker
     const [selected, setSelected] = useState(null);
 
-    const onMapClick = React.useCallback((e) => {
+
+
+    // prevent map to trigger a re-render
+    const onMapClick = useCallback((event) => {
         setMarkers((current) => [
             ...current,
             {
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng(),
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng(),
                 time: new Date(),
-            },
+            }
         ]);
     }, []);
 
 
 
-    const handleNameChange = (event) => {
-        setMarkers((current) => [{
-            ...current,
-
-            locationName: event.target.value
-        }
-        ]);
+    const handleSelectedNameChange = (event) => {
+        setMarkers((current) => current.map(marker => {
+            if (marker.lat === selected.lat && marker.lng === selected.lng){
+                return {...marker, locationName: event.target.value,}
+            }
+            return marker;
+        }))
     }
-
 
 
     // makes map re-center to new position and prevents re-render
@@ -67,36 +78,33 @@ export default function MapContainer({markers, setMarkers}) {
     }, []);
 
 
-    const panTo = React.useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
+    // re-center map to new search location
+    const panTo = useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(17);
     }, []);
 
-
-    if (loadError) return "Error loading maps";
-    if (!isLoaded) return "Loading Maps";
+    if (loadError) {
+        return "Error loading maps";
+    }
+    if (!isLoaded) {
+        return "Loading Maps";
+    }
 
     return (
         <div>
-            {/*Zoomlevels:
-            1: World
-            5: Landmass/continent
-            10: City
-            15: Streets
-            20: Buildings*/}
-
             <Search panTo={panTo}/>
+            <PanToCurrentLocation className="locate" panTo={panTo}/>
 
             <div className="mapContainer">
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
-                    zoom={15}
+                    zoom={14}
                     center={center}
                     options={options}
                     onClick={onMapClick}
                     onLoad={onMapLoad}
                 >
-                    <PanToCurrentLocation className="locate" panTo={panTo}/>
                     <RouteConnector markers={markers} setSelected={setSelected}/>
                     {selected && (
                         <InfoWindow
@@ -115,7 +123,7 @@ export default function MapContainer({markers, setMarkers}) {
                                     }}>
                                     Delete this location
                                 </button>
-                              <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleNameChange}/>
+                              <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleSelectedNameChange}/>
                             </div>
                         </InfoWindow>
                     )}

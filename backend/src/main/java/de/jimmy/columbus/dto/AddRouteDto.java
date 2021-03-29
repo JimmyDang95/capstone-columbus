@@ -15,8 +15,6 @@ import java.util.List;
 @Builder
 public class AddRouteDto {
 
-
-    private String id;
     private String name;
     private String country;
     private String creatorUserName;

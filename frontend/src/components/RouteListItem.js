@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -38,6 +39,11 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
                     >
                         Delete
                     </button>
+                    <Link
+                        to={`routes/${route.id}`}
+                    >
+                        Details
+                    </Link>
                 </CardActions>
             </Card>
     )

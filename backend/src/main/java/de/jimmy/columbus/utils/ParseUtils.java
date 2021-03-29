@@ -18,7 +18,6 @@ public class ParseUtils {
 
     public static AddRouteDto parseToRouteDto(Route route) {
         return new AddRouteDto(
-                route.getId(),
                 route.getName(),
                 route.getCountry(),
                 route.getCreatorUserName(),

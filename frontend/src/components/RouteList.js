@@ -6,7 +6,7 @@ export default function RouteList({routes, onDeleteRouteItem}){
     return(
         <StyledList>
             {routes.map((route) => (
-                <li key={route.name}>
+                <li key={route.id}>
                     <RouteListItem route={route} onDeleteRouteItem={onDeleteRouteItem}/>
                 </li>
                 ))}

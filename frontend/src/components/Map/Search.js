@@ -5,54 +5,53 @@ import React from "react";
 
 
 export default function Search({panTo}) {
-    const {
-        ready,
-        value,
-        suggestions: { status, data },
-        setValue,
-        clearSuggestions,
-    } = usePlacesAutocomplete({
+    const {ready, value, suggestions: {status, data}, setValue, clearSuggestions,} = usePlacesAutocomplete({
         requestOptions: {
-            location: { lat: () => 43.6532, lng: () => -79.3832 },
-            radius: 100 * 1000,
+            // search center point
+            // convert to arrow functions to return its value
+            location: {
+                lat: () => 53.136719,
+                lng: () => 8.216540,
+            },
+            // 300km radius search expansion range
+            radius: 300 * 1000,
         },
+        debounce: 500,
     });
-
-    const handleInput = (event) => {
-        setValue(event.target.value);
-    };
 
     const handleSelect = async (address) => {
         setValue(address, false);
         clearSuggestions();
-
         try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
             panTo({ lat, lng });
         } catch (error) {
-            console.log(" Error: ", error);
+            console.log('error: ', error);
         }
+    };
+
+    const handleInput = (event) => {
+        setValue(event.target.value);
     };
 
     return (
         <div className="search">
             <Combobox onSelect={handleSelect}>
-                <ComboboxInput
-                    value={value}
-                    onChange={handleInput}
-                    disabled={!ready}
-                    placeholder="Search your location"
+                <ComboboxInput value={value}
+                               onChange={handleInput}
+                               disabled={!ready}
+                               placeholder={"search"}
+                               className={"inputField"}
                 />
                 <ComboboxPopover>
                     <ComboboxList>
-                        {status === "OK" &&
-                        data.map(({ id, description }) => (
-                            <ComboboxOption key={id} value={description} />
+                        {status === "OK" && data.map(({id, description}) => (
+                            <ComboboxOption key={id} value={description}/>
                         ))}
                     </ComboboxList>
                 </ComboboxPopover>
             </Combobox>
         </div>
-    );
+    )
 }

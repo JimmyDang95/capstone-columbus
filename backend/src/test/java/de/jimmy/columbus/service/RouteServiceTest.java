@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -27,7 +28,7 @@ class RouteServiceTest {
     private final RouteService routeService = new RouteService(routeDb);
 
 
- @Test
+    @Test
     @DisplayName("List routes should return list of routes from db")
     public void listRoutes() {
         //GIVEN
@@ -53,6 +54,25 @@ class RouteServiceTest {
         ));
 
     }
+
+/*
+    @Test
+    @DisplayName("getRouteByRouteName should return existing route from Db")
+    public void getExistingRoute(){
+        //GIVEN
+        Route actualRoute = Route.builder()
+                .name("TestRoute")
+                .country("Germany")
+                .creatorUserName("Hans")
+                .build();
+
+        //WHEN
+        Optional<Route> routeByRouteName = routeService.getRouteByRouteName(actualRoute.getName());
+
+        //THEN
+        assertThat(routeByRouteName.get(), is(actualRoute));
+    }
+*/
 
     @Test
     @DisplayName("Add method should a add a route object to route List and return the added route")
@@ -89,7 +109,7 @@ class RouteServiceTest {
 
 
      //WHEN
-     routeService.deleteRouteFromList("testroute");
+     routeService.deleteRoute("testroute");
 
      //THEN
      verify(routeDb).deleteById("testroute");

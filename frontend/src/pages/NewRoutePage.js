@@ -3,7 +3,7 @@ import {postRoute} from "../service/columbusApiService";
 import {useState} from "react";
 import MapContainer from "../components/MapContainer";
 
-const initState = {name: "", country: "", creatorUserName: "", locations: [{locationName: "", lat: "", lng: ""}],  }
+const initState = {name: "", country: "", creatorUserName: "", locations: [] }
 
 export default function NewRoutePage() {
     const [routes, setRoutes] = useState([])
@@ -15,10 +15,6 @@ export default function NewRoutePage() {
     const handleChange = (event) => {
         setRouteToAdd({...routeToAdd,[event.target.name]:event.target.value})
     }
-
-   /* const handleNameChange = (event) => {
-        setRouteToAdd({...routeToAdd,[event.target.locationName]:})
-    }*/
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -35,9 +31,9 @@ export default function NewRoutePage() {
 
     return (
         <>
-            <MapContainer routes={routes} markers={markers} setMarkers={setMarkers} className="mapContainer"/>
+            <MapContainer markers={markers} setMarkers={setMarkers} className="mapContainer"/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
-            <div>{markers.map(marker => <p>{marker.lat}</p>)}</div>
+            <div>{markers.map(marker => <><p>{marker.lat}</p><p>{marker.locationName}</p></>)}</div>
         </>
     )
 }
