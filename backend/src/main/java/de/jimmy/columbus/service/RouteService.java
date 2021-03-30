@@ -12,17 +12,16 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RouteService {
 
     private final RoutesMongoDb routeDb;
-    private final TimestampUtils timestampUtils;
 
     @Autowired
-    public RouteService(RoutesMongoDb routeDb, TimestampUtils timestampUtils){
+    public RouteService(RoutesMongoDb routeDb){
         this.routeDb = routeDb;
-        this.timestampUtils = timestampUtils;
     }
 
     public List<Route> listRoutes() {
@@ -36,12 +35,20 @@ public class RouteService {
                 .name(routeToBeAdded.getName())
                 .country(routeToBeAdded.getCountry())
                 .creatorUserName(routeToBeAdded.getCreatorUserName())
-                .timestamp(timestampUtils.generateTimestampInstant())
+                .locations(routeToBeAdded.getLocations())
                 .build();
 
 
         routeDb.save(routeObjectToBeSaved);
-        return (routeObjectToBeSaved);
+        return routeObjectToBeSaved;
 
+    }
+
+    public void deleteRoute(String name) {
+        routeDb.deleteById(name);
+    }
+
+    public Optional<Route> getRouteByRouteName(String id) {
+        return routeDb.findById(id);
     }
 }
