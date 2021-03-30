@@ -24,8 +24,15 @@ import static org.hamcrest.Matchers.*;
 class RouteServiceTest {
 
     private final RoutesMongoDb routeDb = mock(RoutesMongoDb.class);
-
     private final RouteService routeService = new RouteService(routeDb);
+
+    private Route createTestRoute() {
+        return Route.builder()
+                .name("TestRoute")
+                .country("Germany")
+                .creatorUserName("Hans")
+                .build();
+    }
 
 
     @Test
@@ -55,24 +62,23 @@ class RouteServiceTest {
 
     }
 
-/*
     @Test
     @DisplayName("getRouteByRouteName should return existing route from Db")
     public void getExistingRoute(){
         //GIVEN
-        Route actualRoute = Route.builder()
-                .name("TestRoute")
-                .country("Germany")
-                .creatorUserName("Hans")
-                .build();
+        String name = "Testroute";
+        when(routeDb.findById(name)).thenReturn(
+                Optional.of(createTestRoute())
+        );
 
         //WHEN
-        Optional<Route> routeByRouteName = routeService.getRouteByRouteName(actualRoute.getName());
+        Optional<Route> result = routeService.getRouteByRouteName(name);
 
         //THEN
-        assertThat(routeByRouteName.get(), is(actualRoute));
+        assertThat(result.get(), is(createTestRoute()));
+        verify(routeDb).findById(name);
+
     }
-*/
 
     @Test
     @DisplayName("Add method should a add a route object to route List and return the added route")

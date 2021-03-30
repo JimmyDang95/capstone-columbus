@@ -30,10 +30,10 @@ export default function NewRoutePage() {
 
 
     return (
-        <>
+        <React.Fragment>
             <MapContainer markers={markers} setMarkers={setMarkers} className="mapContainer"/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
             <div>{markers.map(marker => <><p>{marker.lat}</p><p>{marker.locationName}</p></>)}</div>
-        </>
+        </React.Fragment>
     )
 }
