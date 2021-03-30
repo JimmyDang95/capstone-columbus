@@ -31,6 +31,7 @@ export default function RouteDetails (){
     useEffect(() => {
         getRoute(name)
             .then(setRouteData)
+            .catch((error) => console.error(error))
     }, [])
 
     if (!routeData) {
