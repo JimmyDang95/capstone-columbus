@@ -12,7 +12,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -24,11 +23,13 @@ import static org.hamcrest.Matchers.*;
 class RouteServiceTest {
 
     private final RoutesMongoDb routeDb = mock(RoutesMongoDb.class);
+    private final TimestampUtils timestampUtils = mock(TimestampUtils.class);
 
-    private final RouteService routeService = new RouteService(routeDb);
+
+    private final RouteService routeService = new RouteService(routeDb, timestampUtils);
 
 
-    @Test
+ @Test
     @DisplayName("List routes should return list of routes from db")
     public void listRoutes() {
         //GIVEN
@@ -55,25 +56,6 @@ class RouteServiceTest {
 
     }
 
-/*
-    @Test
-    @DisplayName("getRouteByRouteName should return existing route from Db")
-    public void getExistingRoute(){
-        //GIVEN
-        Route actualRoute = Route.builder()
-                .name("TestRoute")
-                .country("Germany")
-                .creatorUserName("Hans")
-                .build();
-
-        //WHEN
-        Optional<Route> routeByRouteName = routeService.getRouteByRouteName(actualRoute.getName());
-
-        //THEN
-        assertThat(routeByRouteName.get(), is(actualRoute));
-    }
-*/
-
     @Test
     @DisplayName("Add method should a add a route object to route List and return the added route")
     void addRouteTest() {
@@ -98,22 +80,6 @@ class RouteServiceTest {
 
         assertThat(addedRoute, is(expectedRoute));
         verify(routeDb).save(expectedRoute);
-
-    }
-
-    @Test
-    @DisplayName("Delete Route from list and db")
-    void deleteRouteTest() {
-
-     //GIVEN
-
-
-     //WHEN
-     routeService.deleteRoute("testroute");
-
-     //THEN
-     verify(routeDb).deleteById("testroute");
-
 
     }
 }
