@@ -32,7 +32,7 @@ export default function RouteDetails (){
         getRoute(name)
             .then(setRouteData)
             .catch((error) => console.error(error))
-    }, [])
+    }, [name])
 
     if (!routeData) {
         return (
