@@ -30,18 +30,16 @@ public class RouteService {
 
 
 
-    public Route addRoute(AddRouteDto routeToBeAdded){
+    public Route addRoute(AddRouteDto routeToBeAdded) {
         Route routeObjectToBeSaved = Route.builder()
                 .name(routeToBeAdded.getName())
                 .country(routeToBeAdded.getCountry())
                 .creatorUserName(routeToBeAdded.getCreatorUserName())
-                .locations(routeToBeAdded.getLocations())
                 .build();
 
 
         routeDb.save(routeObjectToBeSaved);
-        return routeObjectToBeSaved;
-
+        return (routeObjectToBeSaved);
     }
 
     public void deleteRoute(String name) {
