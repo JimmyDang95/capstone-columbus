@@ -1,24 +1,24 @@
-import axios from 'axios';
+import axiosConfig from "./axiosConfig";
 
 const userUrl = 'api/user'
 const routeUrl = '/api/routes'
 
 export const getRoutes = () =>
-    axios
+    axiosConfig.axiosInstance
         .get(routeUrl)
         .then((response) => response.data);
 
 export const getRoute = (name) =>
-    axios
+    axiosConfig.axiosInstance
         .get(`${routeUrl}/${name}`)
         .then((response) => response.data)
 
 export const postRoute = (newRouteDto) =>
-    axios
+    axiosConfig.axiosInstance
         .post(routeUrl, newRouteDto)
         .then((response) => response.data)
 
 
 export const deleteRouteFromList = (routeName) =>
-    axios
+    axiosConfig.axiosInstance
         .delete(`${routeUrl}/${routeName}`)
