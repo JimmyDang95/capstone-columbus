@@ -1,5 +1,4 @@
 import OverviewPage from "./pages/OverviewPage";
-import AppHeader from "./components/AppHeader";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import React from "react";
 import NewRoutePage from "./pages/NewRoutePage";
@@ -15,8 +14,6 @@ function App() {
     return (
         <Router>
         <AuthProvider>
-            <PageLayout>
-                <AppHeader/>
                 <Switch>
                     <Route exact path="/login">
                         <Login/>
@@ -34,7 +31,6 @@ function App() {
                     <RouteDetails/>
                     </ProtectedRoute>
                 </Switch>
-            </PageLayout>
         </AuthProvider>
         </Router>
     )

@@ -3,15 +3,17 @@ import {Redirect} from "react-router-dom";
 import {loginUser} from "../service/loginService";
 import {useAuth} from "../auth/AuthContext";
 import styled from 'styled-components/macro'
+import {Box, Button} from "@material-ui/core";
 
 export default function Login() {
+
     const {token, setToken} = useAuth()
     const [userName, setUserName] = useState('')
     const [userPassword, setUserPassword] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if(!userName && !userPassword){
+        if (!userName && !userPassword) {
             return
         }
         loginUser(userName, userPassword).then(setToken)
@@ -24,27 +26,44 @@ export default function Login() {
     }
 
     return (
-        <section>
-            <p>Please login</p>
-
+        <LoginWrapper>
+            <h1>Welcome to Columbus</h1>
             <Form onSubmit={handleSubmit}>
-            <input
-                placeholder="Username"
-                type="text"
-                value={userName}
-                onChange={({target}) => setUserName(target.value)}
+                <input
+                    placeholder="Username"
+                    type="text"
+                    value={userName}
+                    onChange={({target}) => setUserName(target.value)}
                 />
-            <input
-                placeholder="Password"
-                type="password"
-                value={userPassword}
-                onChange={({ target}) => setUserPassword(target.value)}
+                <input
+                    placeholder="Password"
+                    type="password"
+                    value={userPassword}
+                    onChange={({target}) => setUserPassword(target.value)}
                 />
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
             </Form>
-        </section>
-    )
+        </LoginWrapper>
+    );
 }
+
+const LoginWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(/images/columbusScreen2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  gap: 20px;
+  h1 {
+    font-family: Playful Display;
+    margin-top: 50px;
+    font-size: 40px;
+    font-weight: lighter;
+    }
+`
 
 
 const Form = styled.form`

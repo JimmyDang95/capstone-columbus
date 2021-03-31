@@ -4,8 +4,6 @@ import de.jimmy.columbus.db.UserMongoDb;
 import de.jimmy.columbus.dto.LoginDto;
 import de.jimmy.columbus.model.ColumbusUser;
 import io.jsonwebtoken.Jwts;
-import org.apache.coyote.Response;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +16,6 @@ import org.springframework.test.context.TestPropertySource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.Matchers;
 import io.jsonwebtoken.Claims;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
