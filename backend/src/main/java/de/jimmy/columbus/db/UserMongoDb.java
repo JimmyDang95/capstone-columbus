@@ -1,11 +1,11 @@
 package de.jimmy.columbus.db;
 
-import de.jimmy.columbus.model.User;
+import de.jimmy.columbus.model.ColumbusUser;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface UserMongoDb extends PagingAndSortingRepository<User, String> {
+public interface UserMongoDb extends PagingAndSortingRepository<ColumbusUser, String> {
 
-    List<User> findAll();
+    List<ColumbusUser> findAll();
 }

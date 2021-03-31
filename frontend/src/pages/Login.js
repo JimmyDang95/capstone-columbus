@@ -60,7 +60,7 @@ const Form = styled.form`
   button {
     padding: 8px;
     margin: 8px;
-    background-color: chocolate;
+    background-color: white;
     font-family: 'Al Nile';
   }
 `
