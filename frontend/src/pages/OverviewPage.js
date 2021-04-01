@@ -1,9 +1,11 @@
 import {Link} from "react-router-dom";
 import React from "react";
 import styled from 'styled-components/macro'
+import BackgroundLayout from "../components/BackgroundLayout";
 
 export default function OverviewPage() {
     return (
+        <BackgroundLayout>
         <Nav>
             <Link to="/routesoverview">
                 Show all Routes
@@ -12,6 +14,7 @@ export default function OverviewPage() {
                 Add new Route
             </Link>
         </Nav>
+        </BackgroundLayout>
     )
 }
 

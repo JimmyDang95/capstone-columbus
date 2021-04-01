@@ -6,7 +6,6 @@ import {Button} from "@material-ui/core";
 export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
 
     return (
-        <div>
             <form noValidate autoComplete="off" onSubmit={onSubmit}>
                 <TextField name="name" placeholder="Routename" value={routeToAdd.name} variant="outlined" type="text" onChange={handleChange}/>
                 <TextField name="country" placeholder="Country" value={routeToAdd.country} variant="outlined" type="text" onChange={handleChange}/>
@@ -15,6 +14,5 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
                     Save
                 </Button>
             </form>
-        </div>
     )
 }

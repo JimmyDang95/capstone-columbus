@@ -8,4 +8,5 @@ import java.util.List;
 public interface RoutesMongoDb extends PagingAndSortingRepository<Route, String> {
 
     List<Route> findAll();
+
 }

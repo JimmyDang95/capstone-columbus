@@ -1,6 +1,6 @@
 import AddNewRouteForm from "../components/AddNewRouteForm";
 import {postRoute} from "../service/columbusApiService";
-import {useState} from "react";
+import {useState, Fragment} from "react";
 import MapContainer from "../components/MapContainer";
 
 const initState = {name: "", country: "", creatorUserName: "", locations: [] }
@@ -33,7 +33,7 @@ export default function NewRoutePage() {
         <>
             <MapContainer markers={markers} setMarkers={setMarkers} className="mapContainer"/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
-            <div>{markers.map(marker => <><p>{marker.lat}</p><p>{marker.locationName}</p></>)}</div>
+            <div>{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}><p>{marker.lat}</p><p>{marker.locationName}</p></Fragment>)}</div>
         </>
     )
 }

@@ -4,6 +4,8 @@ import {loginUser} from "../service/loginService";
 import {useAuth} from "../auth/AuthContext";
 import styled from 'styled-components/macro'
 import {Box, Button} from "@material-ui/core";
+import BackgroundLayout from "../components/BackgroundLayout";
+
 
 export default function Login() {
 
@@ -26,7 +28,7 @@ export default function Login() {
     }
 
     return (
-        <LoginWrapper>
+        <BackgroundLayout>
             <h1>Welcome to Columbus</h1>
             <Form onSubmit={handleSubmit}>
                 <input
@@ -43,20 +45,12 @@ export default function Login() {
                 />
                 <Button type="submit">Login</Button>
             </Form>
-        </LoginWrapper>
+        </BackgroundLayout>
     );
 }
 
 const LoginWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url(/images/columbusScreen2.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  gap: 20px;
+  
   h1 {
     font-family: Playful Display;
     margin-top: 50px;

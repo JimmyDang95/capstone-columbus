@@ -25,7 +25,6 @@ const center = {
 
 const options = {
     disableDefaultUI: true,
-    mapTypeControl: true,
     zoomControl: true,
 };
 
@@ -56,7 +55,7 @@ export default function MapContainer({markers, setMarkers}) {
                 time: new Date(),
             }
         ]);
-    }, []);
+    }, [setMarkers]);
 
 
 
