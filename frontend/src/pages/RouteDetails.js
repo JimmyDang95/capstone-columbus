@@ -3,6 +3,7 @@ import {getRoute} from "../service/columbusApiService";
 import styled from 'styled-components/macro'
 import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
+import RouteDetailsMap from "../components/RouteDetailsMap";
 
 const useStyles = makeStyles({
     root: {
@@ -43,6 +44,8 @@ export default function RouteDetails (){
     }
 
     return (
+        <>
+            <RouteDetailsMap defaultMarkers={routeData?.locations}/>
         <RouteDetailsContainer>
             <Card className={classes.root} variant="outlined">
                 <CardContent>
@@ -55,6 +58,7 @@ export default function RouteDetails (){
                 </CardContent>
             </Card>
         </RouteDetailsContainer>
+        </>
 
     )
 

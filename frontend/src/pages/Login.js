@@ -5,9 +5,11 @@ import {useAuth} from "../auth/AuthContext";
 import styled from 'styled-components/macro'
 import {Box, Button} from "@material-ui/core";
 import BackgroundLayout from "../components/BackgroundLayout";
+import React from 'react';
 
 
 export default function Login() {
+
 
     const {token, setToken} = useAuth()
     const [userName, setUserName] = useState('')
@@ -29,7 +31,7 @@ export default function Login() {
 
     return (
         <BackgroundLayout>
-            <h1>Welcome to Columbus</h1>
+            <WelcomeHeader>Welcome to Columbus</WelcomeHeader>
             <Form onSubmit={handleSubmit}>
                 <input
                     placeholder="Username"
@@ -45,18 +47,29 @@ export default function Login() {
                 />
                 <Button type="submit">Login</Button>
             </Form>
+            <JoinWrapper>
+                Join Our Community And Explore More Places!
+            </JoinWrapper>
         </BackgroundLayout>
     );
 }
 
-const LoginWrapper = styled.section`
-  
-  h1 {
-    font-family: Playful Display;
-    margin-top: 50px;
+
+const WelcomeHeader = styled.h1`
+    font-family: Playful Display, serif;
+    font-style: italic;
+    margin-top: 140px;
     font-size: 40px;
-    font-weight: lighter;
-    }
+    font-weight: bold;
+    color: black;
+`
+const JoinWrapper = styled.h1`
+    font-family: Playful Display, serif;
+    font-style: italic;
+    margin-top: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
 `
 
 
