@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import {loginUser} from "../service/loginService";
 import {useAuth} from "../auth/AuthContext";
 import styled from 'styled-components/macro'
-import {Box, Button} from "@material-ui/core";
+import { Button} from "@material-ui/core";
 import BackgroundLayout from "../components/BackgroundLayout";
 import React from 'react';
 

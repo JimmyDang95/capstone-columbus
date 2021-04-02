@@ -1,8 +1,7 @@
 import React from 'react';
-import {GoogleMap, useLoadScript, InfoWindow} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript} from '@react-google-maps/api';
 import {useState, useCallback, useRef} from 'react'
 import PanToCurrentLocation from "./Map/PanToCurrentLocation";
-import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
 

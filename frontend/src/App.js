@@ -7,13 +7,14 @@ import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
 import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import styled from 'styled-components/macro'
+import Navbar from "./components/Navbar";
 
 
 function App() {
     return (
         <Router>
         <AuthProvider>
+            <Navbar/>
                 <Switch>
                     <Route exact path="/login">
                         <Login/>
@@ -35,14 +36,6 @@ function App() {
         </Router>
     )
 }
-
-const PageLayout = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
-
-  background: #eee;
-`
 
 
 export default App;
