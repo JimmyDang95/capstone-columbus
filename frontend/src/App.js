@@ -2,22 +2,20 @@ import OverviewPage from "./pages/OverviewPage";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import React from "react";
 import NewRoutePage from "./pages/NewRoutePage";
-import RoutesOverview from "./components/RoutesOverview";
+import RoutesOverview from "./pages/RoutesOverview";
 import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
-import Login from "./pages/Login";
+import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import Navbar from "./components/Navbar";
 
 
 function App() {
     return (
         <Router>
         <AuthProvider>
-            <Navbar/>
                 <Switch>
                     <Route exact path="/login">
-                        <Login/>
+                        <LoginPage/>
                     </Route>
                     <ProtectedRoute exact path="/">
                         <OverviewPage/>

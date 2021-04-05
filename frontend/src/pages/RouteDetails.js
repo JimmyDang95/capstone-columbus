@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import RouteDetailsMap from "../components/RouteDetailsMap";
+import Navbar from "../components/Navbar/Navbar";
 
 const useStyles = makeStyles({
     root: {
@@ -22,10 +23,10 @@ const useStyles = makeStyles({
     },
 });
 
-export default function RouteDetails (){
+export default function RouteDetails() {
     const classes = useStyles();
 
-    const { name } = useParams()
+    const {name} = useParams()
     const [routeData, setRouteData] = useState()
 
 
@@ -45,19 +46,23 @@ export default function RouteDetails (){
 
     return (
         <>
+            <Navbar/>
             <RouteDetailsMap defaultMarkers={routeData?.locations}/>
-        <RouteDetailsContainer>
-            <Card className={classes.root} variant="outlined">
-                <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        Creator: {routeData.creatorUserName}
-                    </Typography>
-                    <Typography variant="h5" component="h2"> Routename: {routeData.name}</Typography>
-                    <Typography className={classes.pos} color="textSecondary"> Country: {routeData.country} </Typography>
-                    <Typography variant="body2" component="p">Visited Locations: {routeData?.locations?.map(location => <p>{location.locationName}</p>)}</Typography>
-                </CardContent>
-            </Card>
-        </RouteDetailsContainer>
+            <RouteDetailsContainer>
+                <Card className={classes.root} variant="outlined">
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            Creator: {routeData.creatorUserName}
+                        </Typography>
+                        <Typography variant="h5" component="h2"> Routename: {routeData.name}</Typography>
+                        <Typography className={classes.pos}
+                                    color="textSecondary"> Country: {routeData.country} </Typography>
+                        <Typography variant="body2" component="p">Visited
+                            Locations: {routeData?.locations?.map(location =>
+                                <p>{location.locationName}</p>)}</Typography>
+                    </CardContent>
+                </Card>
+            </RouteDetailsContainer>
         </>
 
     )

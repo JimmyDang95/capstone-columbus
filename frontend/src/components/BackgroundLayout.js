@@ -9,4 +9,5 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: center;
 height: 100vh;
-gap: 20px;`
+gap: 20px;
+`

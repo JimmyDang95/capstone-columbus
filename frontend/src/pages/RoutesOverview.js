@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import RouteList from "./RouteList";
+import RouteList from "../components/RouteList";
 import {deleteRouteFromList, getRoutes} from "../service/columbusApiService";
+import Navbar from "../components/Navbar/Navbar";
 
 
 
@@ -23,6 +24,7 @@ export default function RoutesOverview() {
 
     return (
         <>
+            <Navbar/>
             <RouteList routes={routes} onDeleteRouteItem={deleteRoute}/>
         </>
     )
