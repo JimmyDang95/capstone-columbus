@@ -7,6 +7,7 @@ import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import AppHeader from "./components/AppHeader";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                         <LoginPage/>
                     </Route>
                     <ProtectedRoute exact path="/">
+                        <AppHeader/>
                         <OverviewPage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/newroutepage">

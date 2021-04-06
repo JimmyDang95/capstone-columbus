@@ -29,7 +29,7 @@ export default function LoginContainer() {
         <BoxWrapper>
             <div className="box">
                 <img
-                    src="/images/C.svg"
+                    src="/images/LoginPageLogo.svg"
                     alt="logo"
                     style={{
                         position: "absolute",

@@ -18,7 +18,7 @@ export default function NewRoutePage() {
 
     useEffect(() => {
         setRouteToAdd({...routeToAdd, locations: markers})
-    }, [markers, routeToAdd])
+    }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleSubmit = (event) => {
         event.preventDefault()

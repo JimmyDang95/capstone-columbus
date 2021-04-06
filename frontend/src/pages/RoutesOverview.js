@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import RouteList from "../components/RouteList";
 import {deleteRouteFromList, getRoutes} from "../service/columbusApiService";
 import Navbar from "../components/Navbar/Navbar";
-
+import BackgroundLayout from "../components/BackgroundLayout";
 
 
 export default function RoutesOverview() {
@@ -24,8 +24,9 @@ export default function RoutesOverview() {
 
     return (
         <>
-            <Navbar/>
-            <RouteList routes={routes} onDeleteRouteItem={deleteRoute}/>
+            <BackgroundLayout>
+                <RouteList routes={routes} onDeleteRouteItem={deleteRoute}/>
+            </BackgroundLayout>
         </>
     )
 }

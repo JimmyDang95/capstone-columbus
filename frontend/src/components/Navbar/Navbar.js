@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Bars, Nav, NavLink, NavMenu} from "./NavBarElements";
-import { Fade as Hamburger } from 'hamburger-react'
 
 
 export default function Navbar() {

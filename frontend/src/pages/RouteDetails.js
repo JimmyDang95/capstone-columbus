@@ -46,7 +46,6 @@ export default function RouteDetails() {
 
     return (
         <>
-            <Navbar/>
             <RouteDetailsMap defaultMarkers={routeData?.locations}/>
             <RouteDetailsContainer>
                 <Card className={classes.root} variant="outlined">
