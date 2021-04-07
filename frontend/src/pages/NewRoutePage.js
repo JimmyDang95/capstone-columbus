@@ -2,6 +2,8 @@ import AddNewRouteForm from "../components/AddNewRouteForm";
 import {postRoute} from "../service/columbusApiService";
 import React, {useState, Fragment, useEffect} from "react";
 import MapContainer from "../components/MapContainer";
+import styled from "styled-components/macro";
+import {Card} from "@material-ui/core";
 
 const initState = {name: "", country: "", creatorUserName: "", locations: []}
 
@@ -36,11 +38,29 @@ export default function NewRoutePage() {
 
 
     return (
-        <>
+        <Wrapper>
             <MapContainer markers={markers} setMarkers={setMarkers} className="mapContainer"/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
-            <div>{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}><p>{marker.locationName}</p>
-            </Fragment>)}</div>
-        </>
+            <Card className="item">{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}>
+                <p>{marker.locationName}</p>
+            </Fragment>)}
+            </Card>
+        </Wrapper>
     )
 }
+
+
+const Wrapper = styled.div`
+  text-align: center;
+  font-family: "Glacial Indifference", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .item {
+    background-color: whitesmoke;
+    width: 80%;
+    margin-top: 10px;
+    
+  }
+`

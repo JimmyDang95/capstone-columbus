@@ -13,7 +13,7 @@ const libraries = ['places']
 // set size of the rendered map
 const mapContainerStyle = {
     width: "100vw",
-    height: "50vh",
+    height: "68vh",
 };
 
 //Default Location of Oldenburg
@@ -27,7 +27,6 @@ const options = {
     disableDefaultUI: true,
     zoomControl: true,
 };
-
 
 
 export default function MapContainer({markers, setMarkers}) {
@@ -44,7 +43,6 @@ export default function MapContainer({markers, setMarkers}) {
     const [selected, setSelected] = useState(null);
 
 
-
     // prevent map to trigger a re-render
     const onMapClick = useCallback((event) => {
         setMarkers((current) => [
@@ -58,10 +56,9 @@ export default function MapContainer({markers, setMarkers}) {
     }, [setMarkers]);
 
 
-
     const handleSelectedNameChange = (event) => {
         setMarkers((current) => current.map(marker => {
-            if (marker.lat === selected.lat && marker.lng === selected.lng){
+            if (marker.lat === selected.lat && marker.lng === selected.lng) {
                 return {...marker, locationName: event.target.value,}
             }
             return marker;
@@ -78,8 +75,8 @@ export default function MapContainer({markers, setMarkers}) {
 
 
     // re-center map to new search location
-    const panTo = useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
+    const panTo = useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
         mapRef.current.setZoom(17);
     }, []);
 
@@ -91,43 +88,42 @@ export default function MapContainer({markers, setMarkers}) {
     }
 
     return (
-        <div>
-            <Search panTo={panTo}/>
-            <PanToCurrentLocation className="locate" panTo={panTo}/>
 
-            <div className="mapContainer">
-                <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={14}
-                    center={center}
-                    options={options}
-                    onClick={onMapClick}
-                    onLoad={onMapLoad}
-                >
-                    <RouteConnector markers={markers} setSelected={setSelected}/>
-                    {selected && (
-                        <InfoWindow
-                            position={{lat: selected.lat, lng: selected.lng}}
-                            onCloseClick={() => {
-                                setSelected(null);
-                            }}>
-                            <div>
-                                <p>Locationinfo: {formatRelative(selected.time, new Date())}
-                                </p>
-                                <button
-                                    onClick={() => {
-                                        setMarkers(null)
-                                        setMarkers(markers.filter(marker => marker !== selected))
-                                        setSelected(null)
-                                    }}>
-                                    Delete this location
-                                </button>
-                              <input placeholder="Enter Locationname" value={markers.locationName} onChange={handleSelectedNameChange}/>
-                            </div>
-                        </InfoWindow>
-                    )}
-                </GoogleMap>
-            </div>
+        <div>
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={14}
+                center={center}
+                options={options}
+                onClick={onMapClick}
+                onLoad={onMapLoad}
+            >
+                <Search panTo={panTo}/>
+                <PanToCurrentLocation className="locate" panTo={panTo}/>
+                <RouteConnector markers={markers} setSelected={setSelected}/>
+                {selected && (
+                    <InfoWindow
+                        position={{lat: selected.lat, lng: selected.lng}}
+                        onCloseClick={() => {
+                            setSelected(null);
+                        }}>
+                        <div>
+                            <p>Locationinfo: {formatRelative(selected.time, new Date())}
+                            </p>
+                            <input placeholder="Enter Locationname" value={markers.locationName}
+                                   onChange={handleSelectedNameChange}/>
+                            <button
+                                onClick={() => {
+                                    setMarkers(null)
+                                    setMarkers(markers.filter(marker => marker !== selected))
+                                    setSelected(null)
+                                }}>
+                                Delete this location
+                            </button>
+                        </div>
+                    </InfoWindow>
+                )}
+            </GoogleMap>
         </div>
     );
 }
