@@ -51,6 +51,7 @@ export default function NewRoutePage() {
 
 
 const Wrapper = styled.div`
+  position: absolute;
   text-align: center;
   font-family: "Glacial Indifference", serif;
   display: flex;
@@ -61,6 +62,7 @@ const Wrapper = styled.div`
     background-color: whitesmoke;
     width: 80%;
     margin-top: 10px;
-    
+    max-height: 120px; 
+    overflow: auto;
   }
 `

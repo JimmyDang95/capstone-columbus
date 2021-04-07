@@ -52,7 +52,7 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
             </div>
         </BoxWrapper>*/
         <BoxWrapper>
-            <Button className="btn" variant="outlined" onClick={handleClickOpen}>
+            <Button className="btn" variant="outlined" color="primary" onClick={handleClickOpen}>
                 Save marked Locations
             </Button>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>

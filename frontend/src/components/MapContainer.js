@@ -31,6 +31,7 @@ const options = {
 
 export default function MapContainer({markers, setMarkers}) {
 
+
     // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -41,7 +42,6 @@ export default function MapContainer({markers, setMarkers}) {
 
     // infoWindow for selected marker
     const [selected, setSelected] = useState(null);
-
 
     // prevent map to trigger a re-render
     const onMapClick = useCallback((event) => {
