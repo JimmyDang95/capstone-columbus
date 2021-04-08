@@ -84,9 +84,6 @@ export default function RouteDetailsMap({defaultMarkers}) {
 
     return (
         <div>
-            <Search panTo={panTo}/>
-            <PanToCurrentLocation className="locate" panTo={panTo}/>
-
             <div className="mapContainer">
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
@@ -96,6 +93,8 @@ export default function RouteDetailsMap({defaultMarkers}) {
                     onClick={onMapClick}
                     onLoad={onMapLoad}
                 >
+                    <Search panTo={panTo}/>
+                    <PanToCurrentLocation className="locate" panTo={panTo}/>
                     <RouteConnector markers={markers} setSelected={setSelected}/>
                 </GoogleMap>
             </div>
