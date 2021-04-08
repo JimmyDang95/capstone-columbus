@@ -8,7 +8,7 @@ export default function AppHeader() {
         <>
             <Link to="/">
                 <img
-                    src="/images/C.svg"
+                    src="/images/BackArrow.svg"
                     alt="logo"
                     style={{
                         position: "absolute",

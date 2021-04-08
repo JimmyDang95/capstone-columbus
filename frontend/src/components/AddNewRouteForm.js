@@ -16,41 +16,6 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
     };
 
     return (
-        /*<BoxWrapper>
-            <Form noValidate autoComplete="off" onSubmit={onSubmit}>
-                <TextField className="input-container" name="name" placeholder="Routename" value={routeToAdd.name} variant="outlined" type="text"
-                           onChange={handleChange}/>
-                <TextField className="input-container" name="country" placeholder="Country" value={routeToAdd.country} variant="outlined"
-                           type="text" onChange={handleChange}/>
-                <TextField  className="input-container" name="creatorUserName" placeholder="Creator" value={routeToAdd.creatorUserName}
-                           variant="outlined" type="text" onChange={handleChange}/>
-                <Button variant="contained" color="secondary" type="submit">
-                    Save
-                </Button>
-            </Form>
-        </BoxWrapper>*/
-        /*<BoxWrapper>
-            <div className="box">
-                <Form onSubmit={onSubmit}>
-                    <div className="input-container">
-                        <input name="name" type="text" value={routeToAdd.name}
-                               onChange={handleChange}/>
-                        <label>Routename</label>
-                    </div>
-                    <div className="input-container">
-                        <input type="text" name="country" value={routeToAdd.country}
-                               onChange={handleChange}/>
-                        <label>Country</label>
-                    </div>
-                    <div className="input-container">
-                        <input name="creatorUserName" type="text" value={routeToAdd.creatorUserName}
-                               onChange={handleChange}/>
-                        <label>Creator</label>
-                    </div>
-                    <button type="submit" className="btn">Save</button>
-                </Form>
-            </div>
-        </BoxWrapper>*/
         <BoxWrapper>
             <Button className="btn" variant="outlined" color="primary" onClick={handleClickOpen}>
                 Save marked Locations

@@ -13,7 +13,7 @@ import AppHeader from "./components/AppHeader";
 function App() {
     return (
         <Router>
-        <AuthProvider>
+            <AuthProvider>
                 <Switch>
                     <Route exact path="/login">
                         <LoginPage/>
@@ -26,13 +26,14 @@ function App() {
                         <NewRoutePage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routesoverview">
-                    <RoutesOverview/>
+                        <AppHeader/>
+                        <RoutesOverview/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routes/:name">
-                    <RouteDetails/>
+                        <RouteDetails/>
                     </ProtectedRoute>
                 </Switch>
-        </AuthProvider>
+            </AuthProvider>
         </Router>
     )
 }

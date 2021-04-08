@@ -5,6 +5,7 @@ import PanToCurrentLocation from "./Map/PanToCurrentLocation";
 import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
+import AppHeader from "./AppHeader";
 
 
 // additional google libraries; "places" for the search function on the map
