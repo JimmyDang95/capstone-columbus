@@ -28,3 +28,5 @@ export default createGlobalStyle`
     width: 100%;
     text-align: center;
 }
+
+  `

@@ -1,6 +1,6 @@
 import axiosConfig from "./axiosConfig";
 
-const userUrl = 'api/user'
+//const userUrl = 'api/user'
 const routeUrl = '/api/routes'
 
 export const getRoutes = () =>

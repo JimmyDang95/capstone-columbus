@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import styled from "styled-components/macro";
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
 export default function RouteListItem({route, onDeleteRouteItem}) {
     const classes = useStyles();
 
+
     return (
             <Card className={classes.root} variant="outlined">
                 <CardContent>
@@ -30,7 +32,7 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
                     </Typography>
                     <Typography variant="h5" component="h2"> Routename: {route.name}</Typography>
                     <Typography className={classes.pos} color="textSecondary"> Country: {route.country} </Typography>
-                    <Typography variant="body2" component="p">Visited Locations: {route?.locations?.map(location => <p>{location.locationName}</p>)}</Typography>
+                    <Typography variant="body2" component="div">Visited Locations: {route?.locations?.map(location => <p key={`${location.lat} - ${location.lng}`}>{location.locationName}</p>)}</Typography>
                 </CardContent>
                 <CardActions>
                     <button
@@ -49,4 +51,3 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
     )
 
 }
-

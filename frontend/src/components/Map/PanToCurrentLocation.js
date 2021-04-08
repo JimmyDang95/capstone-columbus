@@ -33,7 +33,7 @@ const PantoIcon = styled.div`
     
     .gpsicon {
         margin-right: 15px;
-        margin-top: 15px;
+        margin-top: 11px;
     }
  `
 

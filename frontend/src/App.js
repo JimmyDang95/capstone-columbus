@@ -2,12 +2,12 @@ import OverviewPage from "./pages/OverviewPage";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import React from "react";
 import NewRoutePage from "./pages/NewRoutePage";
-import RoutesOverview from "./components/RoutesOverview";
+import RoutesOverview from "./pages/RoutesOverview";
 import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
-import Login from "./pages/Login";
+import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import styled from 'styled-components/macro'
+import AppHeader from "./components/AppHeader";
 
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
         <AuthProvider>
                 <Switch>
                     <Route exact path="/login">
-                        <Login/>
+                        <LoginPage/>
                     </Route>
                     <ProtectedRoute exact path="/">
+                        <AppHeader/>
                         <OverviewPage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/newroutepage">
@@ -35,14 +36,6 @@ function App() {
         </Router>
     )
 }
-
-const PageLayout = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
-
-  background: #eee;
-`
 
 
 export default App;

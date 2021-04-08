@@ -41,8 +41,7 @@ export default function Search({panTo}) {
                 <ComboboxInput value={value}
                                onChange={handleInput}
                                disabled={!ready}
-                               placeholder={"search"}
-                               className={"inputField"}
+                               placeholder={"Enter a location"}
                 />
                 <ComboboxPopover>
                     <ComboboxList>
@@ -55,3 +54,4 @@ export default function Search({panTo}) {
         </div>
     )
 }
+
