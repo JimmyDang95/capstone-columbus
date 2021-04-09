@@ -1,6 +1,8 @@
 import GpsFixedTwoToneIcon from '@material-ui/icons/GpsFixedTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import styled from "styled-components/macro";
+import AppHeader from "../AppHeader";
+import React from "react";
 
 // re-center to original user position
 export default function PanToCurrentLocation({panTo}) {

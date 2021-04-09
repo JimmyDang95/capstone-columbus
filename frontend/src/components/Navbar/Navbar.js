@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Bars, Nav, NavLink, NavMenu} from "./NavBarElements";
+import AppHeader from "../AppHeader";
 
 
 export default function Navbar() {

@@ -5,6 +5,7 @@ import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import RouteDetailsMap from "../components/RouteDetailsMap";
 import Navbar from "../components/Navbar/Navbar";
+import AppHeader from "../components/AppHeader";
 
 const useStyles = makeStyles({
     root: {

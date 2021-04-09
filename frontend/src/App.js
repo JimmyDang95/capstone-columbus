@@ -19,14 +19,12 @@ function App() {
                         <LoginPage/>
                     </Route>
                     <ProtectedRoute exact path="/">
-                        <AppHeader/>
                         <OverviewPage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/newroutepage">
                         <NewRoutePage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routesoverview">
-                        <AppHeader/>
                         <RoutesOverview/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routes/:name">

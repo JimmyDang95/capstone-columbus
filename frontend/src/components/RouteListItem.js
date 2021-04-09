@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Card, CardActions, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Card,Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import styled from "styled-components/macro";
 
@@ -8,7 +8,6 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
     return (
         <BoxWrapper>
             <Card className="box" variant="outlined">
-                <CardContent>
                     <Typography className="creator" color="textSecondary" gutterBottom>
                         Creator: {route.creatorUserName}
                     </Typography>
@@ -17,8 +16,6 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
                     <Typography variant="body2" component="div" className="locations">Visited
                         Locations: {route?.locations?.map(location => <p
                             key={`${location.lat} - ${location.lng}`}>{location.locationName}</p>)}</Typography>
-                </CardContent>
-                <CardActions>
                     <button
                         className="btn"
                         onClick={() => onDeleteRouteItem(route.id)}
@@ -29,9 +26,10 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
                     <Link
                         to={`routes/${route.id}`}
                     >
-                        Details
+                        <button className="btn">
+                            Details
+                        </button>
                     </Link>
-                </CardActions>
             </Card>
         </BoxWrapper>
     )
@@ -39,21 +37,35 @@ export default function RouteListItem({route, onDeleteRouteItem}) {
 }
 
 const BoxWrapper = styled.div`
-  flex-direction: column;
   display: flex;
-  font-weight: bold;
+  flex-direction: column;
+  align-items: center;
   color: black;
+  text-align: center;
+  justify-content: center;
 
   .box {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
-    padding: 70px 100px;
+    /*top right bottom left*/
+    padding: 10px 15px 10px 15px;
     background-color: rgba(255, 255, 255, 0.5);
     font-family: "Glacial Indifference", serif;
+    width: 80%;
+    
+    .btn {
+      font-family: "Glacial Indifference", serif;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: #e74c3c;
+      padding: 6px 8px;
+      margin: 3px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    
   }
+  
 
   .creator {
     font-family: "Glacial Indifference", serif;
@@ -61,7 +73,6 @@ const BoxWrapper = styled.div`
 
   .routeName {
     font-family: "Glacial Indifference", serif;
-
   }
 
   .country {
@@ -71,11 +82,5 @@ const BoxWrapper = styled.div`
 
   .locations {
     font-family: "Glacial Indifference", serif;
-
-  }
-
-  .btn {
-    font-family: "Glacial Indifference", serif;
-
   }
 `

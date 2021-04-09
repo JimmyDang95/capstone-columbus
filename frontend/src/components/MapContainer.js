@@ -5,7 +5,8 @@ import PanToCurrentLocation from "./Map/PanToCurrentLocation";
 import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
-import AppHeader from "./AppHeader";
+import styled from 'styled-components/macro'
+import {DeleteButton} from "./MapContainerStyle";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -89,7 +90,6 @@ export default function MapContainer({markers, setMarkers}) {
     }
 
     return (
-
         <div>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
@@ -113,14 +113,14 @@ export default function MapContainer({markers, setMarkers}) {
                             </p>
                             <input placeholder="Enter Locationname" value={markers.locationName}
                                    onChange={handleSelectedNameChange}/>
-                            <button
+                            <DeleteButton
                                 onClick={() => {
                                     setMarkers(null)
                                     setMarkers(markers.filter(marker => marker !== selected))
                                     setSelected(null)
                                 }}>
                                 Delete this location
-                            </button>
+                            </DeleteButton>
                         </div>
                     </InfoWindow>
                 )}
@@ -128,3 +128,11 @@ export default function MapContainer({markers, setMarkers}) {
         </div>
     );
 }
+
+
+/*
+const DeleteButton = styled.button`
+  background-color: #e74c3c;
+  margin: 5px;
+`
+*/

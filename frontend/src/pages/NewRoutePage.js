@@ -4,6 +4,9 @@ import React, {useState, Fragment, useEffect} from "react";
 import MapContainer from "../components/MapContainer";
 import styled from "styled-components/macro";
 import {Card} from "@material-ui/core";
+import AppHeader from "../components/AppHeader";
+import BackgroundLayout from "../components/BackgroundLayout";
+
 
 const initState = {name: "", country: "", creatorUserName: "", locations: []}
 
@@ -39,12 +42,15 @@ export default function NewRoutePage() {
 
     return (
         <Wrapper>
-            <MapContainer markers={markers} setMarkers={setMarkers} className="mapContainer"/>
+            <BackgroundLayout>
+            <AppHeader/>
+            <MapContainer markers={markers} setMarkers={setMarkers}/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
             <Card className="item">{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}>
                 <p>{marker.locationName}</p>
             </Fragment>)}
             </Card>
+                </BackgroundLayout>
         </Wrapper>
     )
 }
@@ -62,7 +68,7 @@ const Wrapper = styled.div`
     background-color: whitesmoke;
     width: 80%;
     margin-top: 10px;
-    max-height: 120px; 
+    max-height: 110px; 
     overflow: auto;
   }
 `

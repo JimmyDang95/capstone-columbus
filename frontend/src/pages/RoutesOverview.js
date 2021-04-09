@@ -3,6 +3,7 @@ import RouteList from "../components/RouteList";
 import {deleteRouteFromList, getRoutes} from "../service/columbusApiService";
 import Navbar from "../components/Navbar/Navbar";
 import BackgroundLayout from "../components/BackgroundLayout";
+import AppHeader from "../components/AppHeader";
 
 
 export default function RoutesOverview() {
@@ -25,6 +26,7 @@ export default function RoutesOverview() {
     return (
         <>
             <BackgroundLayout>
+                <AppHeader/>
                 <RouteList routes={routes} onDeleteRouteItem={deleteRoute}/>
             </BackgroundLayout>
         </>
