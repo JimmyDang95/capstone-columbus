@@ -5,6 +5,7 @@ import MapContainer from "../components/MapContainer";
 import styled from "styled-components/macro";
 import {Card} from "@material-ui/core";
 import AppHeader from "../components/AppHeader";
+import BackgroundLayout from "../components/BackgroundLayout";
 
 
 const initState = {name: "", country: "", creatorUserName: "", locations: []}
@@ -41,6 +42,7 @@ export default function NewRoutePage() {
 
     return (
         <Wrapper>
+            <BackgroundLayout>
             <AppHeader/>
             <MapContainer markers={markers} setMarkers={setMarkers}/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
@@ -48,6 +50,7 @@ export default function NewRoutePage() {
                 <p>{marker.locationName}</p>
             </Fragment>)}
             </Card>
+            </BackgroundLayout>
         </Wrapper>
     )
 }
