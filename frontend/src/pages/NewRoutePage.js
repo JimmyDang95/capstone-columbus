@@ -1,11 +1,10 @@
 import AddNewRouteForm from "../components/AddNewRouteForm";
 import {postRoute} from "../service/columbusApiService";
-import React, {useState, Fragment, useEffect} from "react";
+import React, {useState, Fragment, useLayoutEffect} from "react";
 import MapContainer from "../components/MapContainer";
 import styled from "styled-components/macro";
 import {Card} from "@material-ui/core";
 import AppHeader from "../components/AppHeader";
-import BackgroundLayout from "../components/BackgroundLayout";
 
 
 const initState = {name: "", country: "", creatorUserName: "", locations: []}
@@ -21,7 +20,7 @@ export default function NewRoutePage() {
         setRouteToAdd({...routeToAdd, [event.target.name]: event.target.value})
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setRouteToAdd({...routeToAdd, locations: markers})
     }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -42,7 +41,6 @@ export default function NewRoutePage() {
 
     return (
         <Wrapper>
-            <BackgroundLayout>
             <AppHeader/>
             <MapContainer markers={markers} setMarkers={setMarkers}/>
             <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
@@ -50,7 +48,6 @@ export default function NewRoutePage() {
                 <p>{marker.locationName}</p>
             </Fragment>)}
             </Card>
-                </BackgroundLayout>
         </Wrapper>
     )
 }

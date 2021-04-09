@@ -1,7 +1,7 @@
 import { Marker, Polyline} from "@react-google-maps/api";
 import React from "react";
 
-export default function RouteConnector ({markers}) {
+export default function RouteConnector ({markers, setSelected}) {
 
     //coordinates and styling for Polyline to draw route
     const polyLineCoords = markers.map(marker => {
@@ -21,6 +21,9 @@ export default function RouteConnector ({markers}) {
                     key={`${marker.lat}-${marker.lng}`}
                     position={{
                         lat: marker.lat, lng: marker.lng
+                    }}
+                    onClick={() => {
+                        setSelected(marker);
                     }}
                 />
             ))}
