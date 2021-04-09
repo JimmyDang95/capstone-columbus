@@ -1,12 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Bars, Nav, NavLink, NavMenu} from "./NavBarElements";
-import AppHeader from "../AppHeader";
 
 
 export default function Navbar() {
-
-    const [isOpen, setOpen] = useState(false)
-
 
     return (
         <>

@@ -7,8 +7,6 @@ import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import AppHeader from "./components/AppHeader";
-
 
 function App() {
     return (

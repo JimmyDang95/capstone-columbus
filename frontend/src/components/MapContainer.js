@@ -5,7 +5,6 @@ import PanToCurrentLocation from "./Map/PanToCurrentLocation";
 import {formatRelative} from 'date-fns';
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
-import styled from 'styled-components/macro'
 import {DeleteButton} from "./MapContainerStyle";
 
 

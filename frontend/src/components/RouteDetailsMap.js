@@ -4,7 +4,6 @@ import {useState, useCallback, useRef} from 'react'
 import PanToCurrentLocation from "./Map/PanToCurrentLocation";
 import RouteConnector from "./Map/RouteConnector";
 import Search from "./Map/Search";
-import AppHeader from "./AppHeader";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -41,8 +40,6 @@ export default function RouteDetailsMap({defaultMarkers}) {
     });
 
 
-    // infoWindow for selected marker
-    const [selected, setSelected] = useState(null);
 
     const [markers, setMarkers] = useState(defaultMarkers || []);
 
@@ -96,7 +93,7 @@ export default function RouteDetailsMap({defaultMarkers}) {
                 >
                     <Search panTo={panTo}/>
                     <PanToCurrentLocation className="locate" panTo={panTo}/>
-                    <RouteConnector markers={markers} setSelected={setSelected}/>
+                    <RouteConnector markers={markers}/>
                 </GoogleMap>
             </div>
         </div>

@@ -1,31 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {getRoute} from "../service/columbusApiService";
 import styled from 'styled-components/macro'
-import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardContent, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import RouteDetailsMap from "../components/RouteDetailsMap";
-import Navbar from "../components/Navbar/Navbar";
 import AppHeader from "../components/AppHeader";
-
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
+import BackgroundLayout from "../components/BackgroundLayout";
 
 export default function RouteDetails() {
-    const classes = useStyles();
 
     const {name} = useParams()
     const [routeData, setRouteData] = useState()
@@ -47,28 +29,48 @@ export default function RouteDetails() {
 
     return (
         <>
+            <BackgroundLayout>
+            <AppHeader/>
             <RouteDetailsMap defaultMarkers={routeData?.locations}/>
-            <RouteDetailsContainer>
-                <Card className={classes.root} variant="outlined">
+            <BoxWrapper>
+                <Card className="box"  variant="outlined">
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        <Typography color="textSecondary" gutterBottom>
                             Creator: {routeData.creatorUserName}
                         </Typography>
                         <Typography variant="h5" component="h2"> Routename: {routeData.name}</Typography>
-                        <Typography className={classes.pos}
+                        <Typography
                                     color="textSecondary"> Country: {routeData.country} </Typography>
                         <Typography variant="body2" component="p">Visited
                             Locations: {routeData?.locations?.map(location =>
                                 <p>{location.locationName}</p>)}</Typography>
                     </CardContent>
                 </Card>
-            </RouteDetailsContainer>
+            </BoxWrapper>
+            </BackgroundLayout>
         </>
 
     )
 
 }
 
-const RouteDetailsContainer = styled.section`
+const BoxWrapper = styled.div`
   display: flex;
-`
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  text-align: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow-y: scroll;
+
+  .box {
+    border-radius: 12px;
+    /*top right bottom left*/
+    background-color: rgba(255, 255, 255, 0.5);
+    font-family: "Glacial Indifference", serif;
+    width: 100%;
+    height: 100%;
+  }
+  `
