@@ -63,7 +63,7 @@
     </dependencies>
 
     <build>
-        <finalName>columbus</finalName>
+        <finalName>columbus-explore</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
