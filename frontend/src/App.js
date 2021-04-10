@@ -7,32 +7,29 @@ import RouteDetails from "./pages/RouteDetails";
 import AuthProvider from "./auth/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import AppHeader from "./components/AppHeader";
-
 
 function App() {
     return (
         <Router>
-        <AuthProvider>
+            <AuthProvider>
                 <Switch>
                     <Route exact path="/login">
                         <LoginPage/>
                     </Route>
                     <ProtectedRoute exact path="/">
-                        <AppHeader/>
                         <OverviewPage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/newroutepage">
                         <NewRoutePage/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routesoverview">
-                    <RoutesOverview/>
+                        <RoutesOverview/>
                     </ProtectedRoute>
                     <ProtectedRoute path="/routes/:name">
-                    <RouteDetails/>
+                        <RouteDetails/>
                     </ProtectedRoute>
                 </Switch>
-        </AuthProvider>
+            </AuthProvider>
         </Router>
     )
 }

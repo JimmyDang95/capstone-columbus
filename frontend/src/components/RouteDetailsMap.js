@@ -40,8 +40,6 @@ export default function RouteDetailsMap({defaultMarkers}) {
     });
 
 
-    // infoWindow for selected marker
-    const [selected, setSelected] = useState(null);
 
     const [markers, setMarkers] = useState(defaultMarkers || []);
 
@@ -95,10 +93,9 @@ export default function RouteDetailsMap({defaultMarkers}) {
                 >
                     <Search panTo={panTo}/>
                     <PanToCurrentLocation className="locate" panTo={panTo}/>
-                    <RouteConnector markers={markers} setSelected={setSelected}/>
+                    <RouteConnector markers={markers}/>
                 </GoogleMap>
             </div>
         </div>
     );
 }
-
