@@ -129,11 +129,3 @@ export default function MapContainer({markers, setMarkers}) {
         </div>
     );
 }
-
-
-/*
-const DeleteButton = styled.button`
-  background-color: #e74c3c;
-  margin: 5px;
-`
-*/

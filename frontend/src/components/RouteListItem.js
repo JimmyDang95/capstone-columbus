@@ -46,7 +46,6 @@ const BoxWrapper = styled.div`
 
   .box {
     border-radius: 12px;
-    /*top right bottom left*/
     padding: 10px 15px 10px 15px;
     background-color: rgba(255, 255, 255, 0.5);
     font-family: "Glacial Indifference", serif;

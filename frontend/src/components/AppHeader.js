@@ -18,7 +18,7 @@ export default function AppHeader() {
 
 
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   
   margin-right: 320px;
   margin-top: 5px;
