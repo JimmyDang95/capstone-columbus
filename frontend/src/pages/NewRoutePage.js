@@ -43,9 +43,8 @@ export default function NewRoutePage() {
     return (
         <Wrapper>
             <BackgroundLayout>
-            <AppHeader/>
             <MapContainer markers={markers} setMarkers={setMarkers}/>
-            <AddNewRouteForm onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
+            <AddNewRouteForm className="addNewRouteContainer" onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
             <Card className="item">{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}>
                 <p>{marker.locationName}</p>
             </Fragment>)}

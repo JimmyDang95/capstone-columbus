@@ -14,7 +14,7 @@ const libraries = ['places']
 // set size of the rendered map
 const mapContainerStyle = {
     width: "100vw",
-    height: "68vh",
+    height: "100vh",
     overflow: "hidden",
     borderRadius: "6px"
 };

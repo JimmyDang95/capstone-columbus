@@ -9,7 +9,7 @@ export default function AppHeader() {
     return (
         <Wrapper>
             <Link to="/">
-                <BiArrowBack className="arrow" size={30}/>
+                <BiArrowBack size={30}/>
             </Link>
         </Wrapper>
     )

@@ -2,7 +2,8 @@ import React from 'react';
 
 import {Button, Dialog} from "@material-ui/core";
 import styled from "styled-components/macro";
-import {IoMdAddCircle} from "react-icons/all";
+import { IoArrowBackCircle, IoIosAddCircle} from "react-icons/all";
+import {Link} from "react-router-dom";
 
 export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
 
@@ -18,8 +19,13 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
 
     return (
         <BoxWrapper>
-            <Button className="btn" variant="contained" color="primary" onClick={handleClickOpen}>
-                <IoMdAddCircle/>
+            <Button color="primary" onClick={handleClickOpen}>
+                <IoIosAddCircle size={35}/>
+            </Button>
+            <Button color="primary" >
+                <Link to="/">
+                    <IoArrowBackCircle size={35}/>
+                </Link>
             </Button>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>
                 <Title className="form-dialog-title">Add new Route</Title>
@@ -56,6 +62,9 @@ const BoxWrapper = styled.div`
   font-weight: bold;
   color: black;
   margin-top: 10px;
+  position: sticky;
+  bottom: 10px;
+  
 `
 
 const Title = styled.section`
@@ -65,7 +74,6 @@ const Title = styled.section`
   font-size: 20px;
   font-weight: bold;
 `
-
 
 const Form = styled.form`
   font-family: "Glacial Indifference", serif;
@@ -117,7 +125,7 @@ const Form = styled.form`
     position: relative;
     text-align: center;
   }
-
+  
   .input-container input:focus ~ label,
   .input-container input:valid ~ label {
     top: -12px;
