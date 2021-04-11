@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Button, Dialog} from "@material-ui/core";
 import styled from "styled-components/macro";
+import {IoMdAddCircle} from "react-icons/all";
 
 export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
 
@@ -18,7 +19,7 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
     return (
         <BoxWrapper>
             <Button className="btn" variant="contained" color="primary" onClick={handleClickOpen}>
-                Save marked Locations
+                <IoMdAddCircle/>
             </Button>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>
                 <Title className="form-dialog-title">Add new Route</Title>
