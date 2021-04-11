@@ -4,8 +4,9 @@ import {Button, Dialog} from "@material-ui/core";
 import styled from "styled-components/macro";
 import { IoArrowBackCircle, IoIosAddCircle} from "react-icons/all";
 import {Link} from "react-router-dom";
+import NewRouteLocationsCard from "./NewRouteLocationsCard";
 
-export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
+export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd, setRouteToAdd, markers}) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -19,14 +20,13 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
 
     return (
         <BoxWrapper>
-            <Button color="primary" onClick={handleClickOpen}>
-                <IoIosAddCircle size={35}/>
-            </Button>
-            <Button color="primary" >
-                <Link to="/">
-                    <IoArrowBackCircle size={35}/>
-                </Link>
-            </Button>
+            <Buttons>
+                <IoIosAddCircle className="item1" onClick={handleClickOpen} size={35}/>
+                <NewRouteLocationsCard className="item2" setRouteToAdd={setRouteToAdd} routeToAdd={routeToAdd} markers={markers}/>
+                <IoArrowBackCircle className="item3" size={35}>
+                    <Link to="/"/>
+                </IoArrowBackCircle>
+            </Buttons>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>
                 <Title className="form-dialog-title">Add new Route</Title>
                 <Form>
@@ -64,7 +64,24 @@ const BoxWrapper = styled.div`
   margin-top: 10px;
   position: sticky;
   bottom: 10px;
+  right: 10px;
   
+`
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  font-family: "Glacial Indifference", serif;
+  
+  .item1 {
+    color: #3448AB;
+    padding: 5px;
+  }
+  
+  .item3 {
+    color: #3448AB;
+    padding: 5px;
+  }
 `
 
 const Title = styled.section`

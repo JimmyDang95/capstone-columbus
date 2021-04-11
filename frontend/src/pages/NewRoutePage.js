@@ -6,6 +6,7 @@ import styled from "styled-components/macro";
 import {Card} from "@material-ui/core";
 import AppHeader from "../components/AppHeader";
 import BackgroundLayout from "../components/BackgroundLayout";
+import NewRouteLocationsCard from "../components/NewRouteLocationsCard";
 
 
 const initState = {name: "", country: "", creatorUserName: "", locations: []}
@@ -21,10 +22,10 @@ export default function NewRoutePage() {
         setRouteToAdd({...routeToAdd, [event.target.name]: event.target.value})
     }
 
-    useLayoutEffect(() => {
+   /* useLayoutEffect(() => {
         setRouteToAdd({...routeToAdd, locations: markers})
     }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
-
+*/
     const handleSubmit = (event) => {
         event.preventDefault()
         postRoute(routeToAdd)
@@ -44,11 +45,13 @@ export default function NewRoutePage() {
         <Wrapper>
             <BackgroundLayout>
             <MapContainer markers={markers} setMarkers={setMarkers}/>
-            <AddNewRouteForm className="addNewRouteContainer" onSubmit={handleSubmit} routeToAdd={routeToAdd} handleChange={handleChange}/>
-            <Card className="item">{markers.map(marker => <Fragment key={`${marker.lat} - ${marker.lng}`}>
-                <p>{marker.locationName}</p>
-            </Fragment>)}
-            </Card>
+            <AddNewRouteForm onSubmit={handleSubmit} markers={markers} setRouteToAdd={setRouteToAdd} routeToAdd={routeToAdd} handleChange={handleChange}/>
+            {/*<Card className="item">
+                {markers.map(marker =>
+                    <Fragment key={`${marker.lat} - ${marker.lng}`}>
+                        <p>{marker.locationName}</p>
+                    </Fragment>)}
+            </Card>*/}
             </BackgroundLayout>
         </Wrapper>
     )
@@ -63,11 +66,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   
-  .item {
-    background-color: whitesmoke;
-    width: 80%;
-    margin-top: 10px;
-    max-height: 110px; 
-    overflow: auto;
-  }
+/*  .item {
+    background-color: red;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    font-size: 14px;
+    max-width: 100px;
+    max-height: 150px;
+    overflow: scroll;
+  }*/
 `

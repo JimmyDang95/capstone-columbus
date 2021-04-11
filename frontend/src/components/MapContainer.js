@@ -28,7 +28,6 @@ const center = {
 
 const options = {
     disableDefaultUI: true,
-    zoomControl: true,
 };
 
 
