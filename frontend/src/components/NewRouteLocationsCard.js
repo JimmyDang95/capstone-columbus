@@ -1,7 +1,7 @@
 import React, {Fragment, useLayoutEffect} from 'react'
 import styled from "styled-components/macro";
 import {Dialog} from "@material-ui/core";
-import {GrClose, IoIosCloseCircleOutline, IoListCircleSharp} from "react-icons/all";
+import { IoIosCloseCircleOutline, IoListCircleSharp} from "react-icons/all";
 
 export default function NewRouteLocationsCard({setRouteToAdd, routeToAdd, markers}) {
     const [open, setOpen] = React.useState(false);
@@ -18,8 +18,8 @@ export default function NewRouteLocationsCard({setRouteToAdd, routeToAdd, marker
         setRouteToAdd({...routeToAdd, locations: markers})
     }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
 
-
     return (
+        <>
         <BoxWrapper>
             <IoListCircleSharp className="listIcon" onClick={handleClickOpen} size={35}/>
             <Dialog open={open} onClose={handleClose} className="Dialog">
@@ -33,6 +33,7 @@ export default function NewRouteLocationsCard({setRouteToAdd, routeToAdd, marker
                 </Form>
             </Dialog>
         </BoxWrapper>
+        </>
     );
 }
 

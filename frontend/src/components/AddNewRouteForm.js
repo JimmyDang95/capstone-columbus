@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 
 import {Button, Dialog} from "@material-ui/core";
 import styled from "styled-components/macro";
@@ -18,14 +18,18 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd, set
         setOpen(false);
     };
 
+    useLayoutEffect(() => {
+        setRouteToAdd({...routeToAdd, locations: markers})
+    }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
+
     return (
         <BoxWrapper>
             <Buttons>
                 <IoIosAddCircle className="item1" onClick={handleClickOpen} size={35}/>
                 <NewRouteLocationsCard className="item2" setRouteToAdd={setRouteToAdd} routeToAdd={routeToAdd} markers={markers}/>
-                <IoArrowBackCircle className="item3" size={35}>
-                    <Link to="/"/>
-                </IoArrowBackCircle>
+                <Link to="/">
+                    <IoArrowBackCircle className="item3" size={35}/>
+                </Link>
             </Buttons>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>
                 <Title className="form-dialog-title">Add new Route</Title>

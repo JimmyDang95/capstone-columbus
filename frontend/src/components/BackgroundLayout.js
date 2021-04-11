@@ -9,5 +9,4 @@ export default styled.main`
   background-size: cover;
   background-position: center;
   height: 100vh;
-  overflow-y: scroll;
 `

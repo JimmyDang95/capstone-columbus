@@ -13,6 +13,8 @@ const libraries = ['places']
 const mapContainerStyle = {
     width: "100vw",
     height: "50vh",
+    overflow: "hidden",
+    borderRadius: "6px"
 };
 
 //Default Location of Oldenburg
