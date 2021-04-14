@@ -1,9 +1,8 @@
 import AddNewRouteForm from "../components/AddNewRouteForm";
 import {postRoute} from "../service/columbusApiService";
-import React, {useLayoutEffect, useState} from "react";
+import React, {useState} from "react";
 import MapContainer from "../components/MapContainer";
 import styled from "styled-components/macro";
-import BackgroundLayout from "../components/BackgroundLayout";
 
 
 
