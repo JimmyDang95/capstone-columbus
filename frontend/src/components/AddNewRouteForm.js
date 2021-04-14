@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 
 import {Button, Dialog} from "@material-ui/core";
 import styled from "styled-components/macro";
+import { IoArrowBackCircle, IoIosAddCircle} from "react-icons/all";
+import {Link} from "react-router-dom";
+import NewRouteLocationsCard from "./NewRouteLocationsCard";
 
-export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
+export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd, setRouteToAdd, markers}) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -15,11 +18,19 @@ export default function AddNewRouteForm({onSubmit, handleChange, routeToAdd}) {
         setOpen(false);
     };
 
+    useLayoutEffect(() => {
+        setRouteToAdd({...routeToAdd, locations: markers})
+    }, [markers]) // eslint-disable-line react-hooks/exhaustive-deps
+
     return (
         <BoxWrapper>
-            <Button className="btn" variant="contained" color="primary" onClick={handleClickOpen}>
-                Save marked Locations
-            </Button>
+            <Buttons>
+                <IoIosAddCircle className="item1" onClick={handleClickOpen} size={35}/>
+                <NewRouteLocationsCard className="item2" setRouteToAdd={setRouteToAdd} routeToAdd={routeToAdd} markers={markers}/>
+                <Link to="/">
+                    <IoArrowBackCircle className="item3" size={35}/>
+                </Link>
+            </Buttons>
             <Dialog open={open} onClose={handleClose} onSubmit={onSubmit}>
                 <Title className="form-dialog-title">Add new Route</Title>
                 <Form>
@@ -55,6 +66,26 @@ const BoxWrapper = styled.div`
   font-weight: bold;
   color: black;
   margin-top: 10px;
+  position: sticky;
+  bottom: 10px;
+  right: 10px;
+  
+`
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  font-family: "Glacial Indifference", serif;
+  
+  .item1 {
+    color: #3448AB;
+    padding: 5px;
+  }
+  
+  .item3 {
+    color: #3448AB;
+    padding: 5px;
+  }
 `
 
 const Title = styled.section`
@@ -64,7 +95,6 @@ const Title = styled.section`
   font-size: 20px;
   font-weight: bold;
 `
-
 
 const Form = styled.form`
   font-family: "Glacial Indifference", serif;
@@ -116,7 +146,7 @@ const Form = styled.form`
     position: relative;
     text-align: center;
   }
-
+  
   .input-container input:focus ~ label,
   .input-container input:valid ~ label {
     top: -12px;

@@ -12,7 +12,6 @@ export default function RouteDetails() {
     const {name} = useParams()
     const [routeData, setRouteData] = useState()
 
-
     useEffect(() => {
         getRoute(name)
             .then(setRouteData)

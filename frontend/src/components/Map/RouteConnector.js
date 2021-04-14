@@ -9,7 +9,7 @@ export default function RouteConnector ({markers, setSelected}) {
     })
 
     const polylineOptions = {
-        strokeColor: '#ffbs00',
+        strokeColor: '#C73D22',
         strokeOpacity: 0.8,
         strokeWeight: 4,
     }
