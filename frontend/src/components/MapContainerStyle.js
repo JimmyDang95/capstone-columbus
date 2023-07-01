@@ -5,4 +5,4 @@ export const DeleteButton = styled.button`
   margin: 5px;
   border-radius: 4px;
   padding: 4px 6px;
-`
+` 

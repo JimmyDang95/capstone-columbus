@@ -4,13 +4,9 @@ import de.jimmy.columbus.db.RoutesMongoDb;
 import de.jimmy.columbus.dto.AddRouteDto;
 import de.jimmy.columbus.model.Route;
 
-import de.jimmy.columbus.utils.TimestampUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
